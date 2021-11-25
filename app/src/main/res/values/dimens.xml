@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_100">8dp</dimen>
+    <dimen name="small_150">16dp</dimen>
+
+    <dimen name="normal_100">24dp</dimen>
+    <dimen name="normal_150">32dp</dimen>
+    <dimen name="normal_200">40dp</dimen>
+
+    <dimen name="large_100">48dp</dimen>
+    <dimen name="large_150">56dp</dimen>
+    <dimen name="large_200">64dp</dimen>
+    <dimen name="large_250">72dp</dimen>
+</resources>
