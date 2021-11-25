@@ -11,4 +11,10 @@
     <dimen name="large_150">56dp</dimen>
     <dimen name="large_200">64dp</dimen>
     <dimen name="large_250">72dp</dimen>
+
+    <dimen name="height_iV_price">272dp</dimen>
+    <dimen name="height_btn_add_to_cart">56dp</dimen>
+
+    <dimen name="text_size_product_title">18sp</dimen>
+    <dimen name="text_size_product_price">24sp</dimen>
 </resources>
