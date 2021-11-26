@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.trempel.databinding.CategoryFragmentBinding
 
-class CategoryFragment : Fragment(R.layout.category_fragment) {
-
+internal class CategoryFragment : Fragment(R.layout.category_fragment) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,10 +16,9 @@ class CategoryFragment : Fragment(R.layout.category_fragment) {
         savedInstanceState: Bundle?
     ): View {
         val binding = CategoryFragmentBinding.inflate(inflater, container, false)
-        val view = binding.root
         binding.ivCategory.setOnClickListener {
             findNavController().navigate(R.id.action_categoryFragment_to_pdpFragment)
         }
-        return view
+        return binding.root
     }
 }

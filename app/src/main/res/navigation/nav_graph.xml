@@ -9,8 +9,7 @@
         android:id="@+id/categoryFragment"
         android:name="com.example.trempel.CategoryFragment"
         android:label="CategoryFragment"
-        tools:layout="@layout/category_fragment"
-        >
+        tools:layout="@layout/category_fragment">
         <action
             android:id="@+id/action_categoryFragment_to_pdpFragment"
             app:destination="@id/pdpFragment" />
@@ -19,5 +18,5 @@
         android:id="@+id/pdpFragment"
         android:name="com.example.trempel.PdpFragment"
         android:label="PdpFragment"
-        tools:layout="@layout/pdp_fragment"/>
+        tools:layout="@layout/pdp_fragment" />
 </navigation>
