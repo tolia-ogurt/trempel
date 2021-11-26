@@ -6,4 +6,7 @@
     <string name="product_reviews">(228 reviews)</string>
     <string name="product_description">"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight soft fabric for breathable and comfortable wearing. \nAnd Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and…"</string>
     <string name="btn_title">Add to Cart</string>
+    <string name="alert_dialog_title">Permission needed</string>
+    <string name="alert_dialog_title_positive_btn">Permission needed</string>
+    <string name="alert_dialog_message">this permission is necessary for the further correct operation of the application</string>
 </resources>

@@ -5,7 +5,6 @@ import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,31 +14,25 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import java.io.File
-import androidx.core.app.ActivityCompat.startActivityForResult
-
 import android.content.Intent
-import android.media.ImageReader
-import android.net.Uri
 import android.provider.MediaStore
-
 
 class PdpFragment : Fragment() {
 
-    private lateinit var iVProduct: ImageView
-
+    private var iVProduct: ImageView? = null
     private var requestPermissionLauncher: ActivityResultLauncher<String>? = null
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requestPermissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-                if (isGranted) {
-                    readFile()
-                } else {
-                    createAlertDialog()
-                }
+    private val isStoragePermissionGranted: Boolean
+        get() {
+            val currentPermissionStatus = context?.let {
+                ContextCompat.checkSelfPermission(it, Manifest.permission.READ_EXTERNAL_STORAGE)
             }
+            return currentPermissionStatus == PackageManager.PERMISSION_GRANTED
+        }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initializationRequestPermissionLauncher()
     }
 
     override fun onCreateView(
@@ -48,20 +41,16 @@ class PdpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootview = inflater.inflate(R.layout.pdp_fragment, container, false)
-        iVProduct = rootview.findViewById(R.id.iV_product)
-        iVProduct.setOnClickListener {
+        iVProduct = rootview.findViewById(R.id.iv_product)
+        iVProduct?.setOnClickListener {
             hasReadExternalStoragePermission()
         }
         return rootview
     }
 
-        private fun hasReadExternalStoragePermission() {
-        requestPermissionLauncher
+    private fun hasReadExternalStoragePermission() {
         when {
-            ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED -> {
+            isStoragePermissionGranted -> {
                 Log.e("Permission request", "GRANTED")
                 readFile()
             }
@@ -76,9 +65,8 @@ class PdpFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == RESULT_OK){
-            val selectedImage: Uri? = data?.getData()
-            iVProduct.setImageURI(selectedImage)
+        if (resultCode == RESULT_OK) {
+            data?.data?.let { iVProduct?.setImageURI(it) }
         }
     }
 
@@ -89,23 +77,30 @@ class PdpFragment : Fragment() {
         )
         startActivityForResult(
             pickPhoto,
-            1
+            REQUEST_CODE
         )
     }
 
     private fun createAlertDialog() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Permission needed")
-            .setMessage(
-                "this permission is necessary for the further" +
-                        "correct operation of the application"
-            )
-            .setPositiveButton("OK") { dialog, id ->
-                requestPermissionLauncher?.launch(
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                )
-                dialog.cancel()
-            }
-            .show()
+        AlertDialog.Builder(context)
+            .setTitle(R.string.alert_dialog_title)
+            .setMessage(R.string.alert_dialog_message)
+            .setPositiveButton(R.string.alert_dialog_title_positive_btn) { dialog, _ ->
+                requestPermissionLauncher?.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                dialog.dismiss()
+            }.show()
     }
+
+    private fun initializationRequestPermissionLauncher() {
+        val activityResultContracts = ActivityResultContracts.RequestPermission()
+        requestPermissionLauncher =
+            registerForActivityResult(activityResultContracts) { isGranted: Boolean ->
+                if (isGranted) readFile() else createAlertDialog()
+            }
+    }
+
+    companion object {
+        private const val REQUEST_CODE = 1
+    }
+
 }
