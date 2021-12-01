@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class PdpFragment : Fragment() {
+internal class PdpFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

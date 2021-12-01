@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/categoryFragment">
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.trempel.CategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/category_fragment">
+        <action
+            android:id="@+id/action_categoryFragment_to_pdpFragment"
+            app:destination="@id/pdpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pdpFragment"
+        android:name="com.example.trempel.PdpFragment"
+        android:label="PdpFragment"
+        tools:layout="@layout/pdp_fragment" />
+</navigation>

@@ -17,4 +17,6 @@
 
     <dimen name="text_size_product_title">18sp</dimen>
     <dimen name="text_size_product_price">24sp</dimen>
+
+    <dimen name="image_size_category">107dp</dimen>
 </resources>
