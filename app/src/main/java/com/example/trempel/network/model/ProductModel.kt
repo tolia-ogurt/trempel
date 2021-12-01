@@ -1,6 +1,6 @@
 package com.example.trempel.network.model
 
-data class ProductModel(
+internal data class ProductModel(
     val category: String,
     val description: String,
     val id: Int,
@@ -8,4 +8,9 @@ data class ProductModel(
     val price: Double,
     val rating: Rating,
     val title: String
+)
+
+internal data class Rating(
+    val count: Int,
+    val rate: Float
 )

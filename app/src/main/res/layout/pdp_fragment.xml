@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/normal_150"
-        android:background="@drawable/ic_rectangle_1"
+        android:background="@drawable/pdp_rounded_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:textSize="@dimen/text_size_product_price"
         app:layout_constraintEnd_toEndOf="@id/view"
         app:layout_constraintTop_toTopOf="@id/view"
-        tools:text="@string/product_price" />
+        tools:text="@string/product_price_format" />
 
     <RatingBar
         android:id="@+id/rb_product_rating"
@@ -95,18 +95,7 @@
         app:layout_constraintBottom_toBottomOf="@id/rb_product_rating"
         app:layout_constraintStart_toEndOf="@id/rb_product_rating"
         app:layout_constraintTop_toTopOf="@id/rb_product_rating"
-        tools:text="@string/product_score" />
-
-    <TextView
-        android:id="@+id/tv_reviews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_light"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/rb_product_rating"
-        app:layout_constraintStart_toEndOf="@id/tv_product_score"
-        app:layout_constraintTop_toTopOf="@id/rb_product_rating"
-        tools:text="@string/product_reviews" />
+        tools:text="@string/product_score_format" />
 
     <TextView
         android:id="@+id/tv_product_description"

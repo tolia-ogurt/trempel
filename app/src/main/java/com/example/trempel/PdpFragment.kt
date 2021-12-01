@@ -1,7 +1,10 @@
 package com.example.trempel
 
-import android.annotation.SuppressLint
+import android.graphics.Typeface.BOLD
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,45 +21,57 @@ import retrofit2.Response
 
 internal class PdpFragment : Fragment() {
 
-    private var _binding: PdpFragmentBinding? = null
-    private val binding get() = _binding!!
+    private var binding: PdpFragmentBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = PdpFragmentBinding.inflate(inflater, container, false)
-        getInfoProduct()
-        return binding.root
+    ): View? {
+        binding = PdpFragmentBinding.inflate(inflater, container, false)
+        getProductInfo()
+        return binding?.root
     }
 
-    private fun getInfoProduct() {
-        ServiceProvider.getRetrofitService()?.getProduct()
+    private fun getProductInfo() {
+        ServiceProvider.getRetrofitService()?.getProduct(PRODUCT_ID)
             ?.enqueue(object : Callback<ProductModel> {
-                @SuppressLint("SetTextI18n")
                 override fun onResponse(
                     call: Call<ProductModel>,
                     response: Response<ProductModel>
                 ) {
-                    binding.tvProductTitle.text = response.body()?.title
-                    Glide.with(requireContext()).load(response.body()?.image)
-                        .into(binding.ivProduct)
-                    binding.tvProductPrice.text = "$${response.body()?.price.toString()}"
-                    binding.tvProductDescription.text = response.body()?.description
-                    binding.rbProductRating.rating = response.body()?.rating?.rate?.toFloat() ?: 0f
-                    binding.tvProductScore.text = response.body()?.rating?.rate.toString()
-                    binding.tvReviews.text = "(${response.body()?.rating?.count.toString()})"
+                    binding?.run {
+                        tvProductTitle.text = response.body()?.title
+                        Glide.with(ivProduct).load(response.body()?.image).into(ivProduct)
+                        tvProductPrice.text =
+                            getString(R.string.product_price_format, response.body()?.price)
+                        tvProductDescription.text = response.body()?.description
+                        rbProductRating.rating = response.body()?.rating?.rate?.toFloat() ?: 0f
+                        tvProductScore.text = SpannableString(
+                            getString(
+                                R.string.product_score_format,
+                                response.body()?.rating?.rate,
+                                response.body()?.rating?.count
+                            )
+                        ).apply {
+                            setSpan(
+                                StyleSpan(BOLD),
+                                0,
+                                response.body()?.rating?.rate?.toString().orEmpty().length,
+                                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            )
+                        }
+                    }
                 }
 
                 override fun onFailure(call: Call<ProductModel>, t: Throwable) {
                     Log.e(this.javaClass.name, t.toString())
-                    Toast.makeText(
-                        requireContext(),
-                        "Something went wrong, try later.",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(context, R.string.error_message_in_toast, Toast.LENGTH_LONG).show()
                 }
             })
+    }
+
+    companion object {
+        private const val PRODUCT_ID = 2
     }
 }
