@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Trempel</string>
     <string name="product_title">Mens Casual Premium Slim Fit T-Shirts</string>
-    <string name="product_price">$22.3</string>
+    <string name="product_price_format">$%1$.2f</string>
     <string name="product_score">5</string>
-    <string name="product_reviews">(228 reviews)</string>
+    <string name="product_score_format">%1$.1f (%2$d)</string>
     <string name="product_description">"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight soft fabric for breathable and comfortable wearing. \nAnd Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and…"</string>
     <string name="btn_title">Add to Cart</string>
     <string name="category_title">men’s clothing</string>
+    <string name="error_message_in_toast">Something went wrong, try later.</string>
 </resources>
