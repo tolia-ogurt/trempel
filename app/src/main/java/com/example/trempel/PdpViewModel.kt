@@ -8,10 +8,12 @@ import com.example.trempel.network.model.ProductModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-internal class PdpViewModel : ViewModel() {
+internal class PdpViewModel @Inject constructor(
+    private val serviceRepository: ProductRepository
+) : ViewModel() {
 
-    private val serviceRepository = ServiceRepository()
     private val _product = MutableLiveData<ProductModel>()
     val product: LiveData<ProductModel> get() = _product
 
