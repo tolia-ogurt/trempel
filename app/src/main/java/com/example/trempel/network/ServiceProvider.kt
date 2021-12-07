@@ -8,7 +8,7 @@ internal object ServiceProvider {
 
     private const val BASE_URL = "https://fakestoreapi.com/"
 
-    fun getRetrofitService(): RetrofitService? {
+    fun getRetrofitService(): RetrofitService {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
