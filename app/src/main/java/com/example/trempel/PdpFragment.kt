@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.example.trempel.databinding.PdpFragmentBinding
 import javax.inject.Inject
 
@@ -30,6 +30,14 @@ internal class PdpFragment : Fragment() {
             this.viewModel = this@PdpFragment.viewModel
         }.also {
             viewModel.loadProduct()
+            observeExceptionResponse()
         }.root
+
+    }
+
+    private fun observeExceptionResponse() {
+        viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
+            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+        })
     }
 }

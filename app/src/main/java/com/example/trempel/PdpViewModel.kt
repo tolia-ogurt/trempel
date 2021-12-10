@@ -1,38 +1,31 @@
 package com.example.trempel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trempel.network.model.ProductModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.trempel.network.model.DomainModel
 import javax.inject.Inject
 
 internal class PdpViewModel @Inject constructor(
     private val serviceRepository: ProductRepository
 ) : ViewModel() {
 
-    private val _product = MutableLiveData<ProductModel>()
-    val product: LiveData<ProductModel> get() = _product
+    private val _product = MutableLiveData<DomainModel>()
+    val product: LiveData<DomainModel> get() = _product
+    private val _errorLiveData = MutableLiveData<String>()
+    val errorLiveData: LiveData<String> get() = _errorLiveData
 
-    companion object {
-        private const val PRODUCT_ID = 2
+    private val productCallback = object : ServiceCallback<DomainModel> {
+        override fun onSuccess(response: DomainModel) {
+            _product.value = response
+        }
+
+        override fun onFailure(t: Throwable) {
+            _errorLiveData.value = t.toString()
+        }
     }
 
     fun loadProduct() {
-        serviceRepository.getProduct(PRODUCT_ID).enqueue(object : Callback<ProductModel> {
-            override fun onResponse(call: Call<ProductModel>, response: Response<ProductModel>) {
-                response.body()?.let {
-                    _product.value = it
-                    Log.e(this.javaClass.name, "onResponse")
-                } ?: onFailure(call, Exception("Response body is null"))
-            }
-
-            override fun onFailure(call: Call<ProductModel>, t: Throwable) {
-                Log.e(this.javaClass.name, t.toString())
-            }
-        })
+        serviceRepository.getProduct(productCallback)
     }
 }
