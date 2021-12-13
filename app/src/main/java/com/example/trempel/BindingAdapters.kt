@@ -4,8 +4,10 @@ import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
@@ -38,4 +40,9 @@ fun TextView.setMaxLines(dynamic: Boolean) {
     addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
         maxLines = measuredHeight / lineHeight
     }
+}
+
+@BindingAdapter("app:visibility")
+fun View.setVisibility(isVisible: Boolean) {
+    this.scaleX = if (isVisible) 1f else 0f
 }
