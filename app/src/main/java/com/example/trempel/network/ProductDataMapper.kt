@@ -2,19 +2,21 @@ package com.example.trempel.network
 
 import com.example.trempel.network.model.DomainModel
 import com.example.trempel.network.model.ProductModel
+import com.example.trempel.network.model.Rating
 import com.example.trempel.network.model.RatingDomain
 
-internal object ProductDataMapper : Map<ProductModel, DomainModel> {
+internal fun ProductModel.toDomainModel(): DomainModel {
+    return DomainModel(
+        category = this.category,
+        description = this.description,
+        id = this.id,
+        image = this.image,
+        price = this.price,
+        rating = this.rating.toRatingDomain(),
+        title = this.title
+    )
+}
 
-    override fun map(input: ProductModel): DomainModel {
-        return DomainModel(
-            category = input.category,
-            description = input.description,
-            id = input.id,
-            image = input.image,
-            price = input.price,
-            rating = RatingDomain(input.rating.count, input.rating.rate),
-            title = input.title
-        )
-    }
+internal fun Rating.toRatingDomain(): RatingDomain {
+    return RatingDomain(this.count, this.rate)
 }

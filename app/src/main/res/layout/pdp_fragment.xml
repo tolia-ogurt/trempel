@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
-            type="com.example.trempel.PdpViewModel" />
+            type="com.example.trempel.ui.pdp.PdpViewModel" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -41,7 +41,7 @@
             android:layout_marginTop="@dimen/normal_150"
             android:layout_marginEnd="@dimen/normal_150"
             android:fontFamily="@font/montserrat_black"
-            android:lineHeight="@dimen/normal_100"
+            android:lineSpacingExtra="@dimen/small_100"
             android:text="@{viewModel.product.title}"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_product_title"
@@ -116,7 +116,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/montserrat_light"
             android:justificationMode="inter_word"
-            android:lineHeight="@dimen/normal_100"
+            android:lineSpacingExtra="@{@dimen/small_100}"
             android:text="@{viewModel.product.description}"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_product_description"

@@ -1,10 +1,8 @@
 package com.example.trempel
 
-import com.example.trempel.network.ProductDataMapper
 import com.example.trempel.network.model.DomainModel
-import com.example.trempel.network.model.ProductModel
-import com.example.trempel.network.model.RatingDomain
 import com.example.trempel.network.service.ProductService
+import com.example.trempel.network.toDomainModel
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -18,7 +16,7 @@ internal class ProductRepository @Inject constructor(private val retrofitService
         productId: Int = PRODUCT_ID
     ): Single<DomainModel> {
         return retrofitService.getProduct(productId)
-            .map { ProductDataMapper.map(it) }
+            .map { it.toDomainModel() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
