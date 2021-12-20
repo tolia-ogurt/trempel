@@ -36,6 +36,14 @@ dependencies {
     def material_version = "1.4.0"
     def gson_version = "2.5.0"
     def dagger_version = "2.40"
+    def rxJava2_version ="2.2.12"
+    def rxAndroid_version = "2.1.1"
+    def rxJavaAdapter_version = "2.9.0"
+
+
+    //RxJava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxJava2_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid_version"
 
     //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
@@ -44,6 +52,7 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxJavaAdapter_version"
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
