@@ -1,6 +1,7 @@
 package com.example.trempel.di
 
 import android.content.Context
+import com.example.trempel.db.AppDataBase
 import com.example.trempel.ui.categories.CategoryFragment
 import com.example.trempel.ui.login.SignInFragment
 import com.example.trempel.ui.main_activity.MainActivity

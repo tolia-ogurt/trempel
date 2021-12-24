@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="recentlyView"
+            type="com.example.trempel.db.RecentlyViewed" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_recently_view_item"
+        android:layout_width="150dp"
+        android:layout_height="220dp">
+
+
+        <View
+            android:id="@+id/view_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/item_background"
+            android:layout_marginStart="@dimen/small_150"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_recently_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerInside"
+            tools:src="@drawable/image_product"
+            app:imageUrl="@{recentlyView.image}"
+            android:layout_marginTop="@dimen/small_150"
+            android:layout_marginEnd="@dimen/small_100"
+            android:layout_marginStart="@dimen/small_100"
+            android:layout_marginBottom="@dimen/small_125"
+            app:layout_constraintBottom_toTopOf="@id/tv_title_recently_view"
+            app:layout_constraintEnd_toEndOf="@id/view_background"
+            app:layout_constraintStart_toStartOf="@id/view_background"
+            app:layout_constraintTop_toTopOf="@id/view_background" />
+
+        <TextView
+            android:id="@+id/tv_title_recently_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{recentlyView.titleProduct}"
+            tools:text="@string/product_title"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintBottom_toBottomOf="@id/view_background"
+            app:layout_constraintEnd_toStartOf="@id/tv_price_recently_view_item"
+            app:layout_constraintStart_toStartOf="@id/iv_recently_view"
+            android:layout_marginBottom="@dimen/small_150"
+            android:layout_marginStart="@dimen/small_100"
+            />
+
+        <TextView
+            android:id="@+id/tv_price_recently_view_item"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title_recently_view"
+            app:layout_constraintEnd_toEndOf="@id/iv_recently_view"
+            app:layout_constraintStart_toEndOf="@id/tv_title_recently_view"
+            app:layout_constraintTop_toTopOf="@id/tv_title_recently_view"
+            android:maxLines="1"
+            android:text="@{@string/product_price_format(recentlyView.price)}"
+            tools:text="@string/product_price_format"
+            android:textColor="@color/black"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
