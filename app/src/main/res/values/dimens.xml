@@ -34,4 +34,6 @@
     <dimen name="view_bag_height_item">20dp</dimen>
     <dimen name="view_height_item">256dp</dimen>
     <dimen name="view_width_item">174dp</dimen>
+    <dimen name="padding_right_btn_item_add_to_cart">26dp</dimen>
+    <dimen name="padding_left_btn_item_add_to_cart">38dp</dimen>
 </resources>

@@ -17,6 +17,6 @@ internal fun ProductModel.toDomainModel(): DomainModel {
     )
 }
 
-internal fun Rating.toRatingDomain(): RatingDomain {
+private fun Rating.toRatingDomain(): RatingDomain {
     return RatingDomain(this.count, this.rate)
 }

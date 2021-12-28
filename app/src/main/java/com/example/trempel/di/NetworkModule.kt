@@ -1,7 +1,6 @@
 package com.example.trempel.di
 
 import com.example.trempel.network.service.CategoryService
-import com.example.trempel.network.service.MensCategoryService
 import com.example.trempel.network.service.ProductService
 import dagger.Module
 import dagger.Provides
@@ -29,12 +28,6 @@ internal class NetworkModule {
     @Singleton
     fun provideProductService(retrofit: Retrofit): ProductService {
         return retrofit.create(ProductService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideMensCategoryService(retrofit: Retrofit): MensCategoryService {
-        return retrofit.create(MensCategoryService::class.java)
     }
 
     @Provides

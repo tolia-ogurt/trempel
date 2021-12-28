@@ -8,12 +8,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-private const val PRODUCT_ID = 2
 
 internal class ProductRepository @Inject constructor(private val retrofitService: ProductService) {
 
     fun getProduct(
-        productId: Int = PRODUCT_ID
+        productId: Int
     ): Single<DomainModel> {
         return retrofitService.getProduct(productId)
             .map { it.toDomainModel() }

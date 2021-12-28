@@ -11,8 +11,7 @@ import javax.inject.Inject
 
 internal class CategoryViewModel @Inject constructor(
     private val categoryRepository: CategoryRepository
-    ) :
-    ViewModel() {
+) : ViewModel() {
 
     private val _categories = MutableLiveData<List<CategoryDomainModel>>()
     val categories: LiveData<List<CategoryDomainModel>> get() = _categories
@@ -31,8 +30,8 @@ internal class CategoryViewModel @Inject constructor(
             }
             .subscribe({ response ->
                 _categories.value = response
-            }, {
-                _errorLiveData.value = it.message
+            }, { error ->
+                _errorLiveData.value = error.message
             })
     }
 }

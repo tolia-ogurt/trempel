@@ -1,18 +1,18 @@
-package com.example.trempel.ui.mens_category
+package com.example.trempel.ui.products_in_category
 
 import android.util.Log
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trempel.MensCategoryRepository
+import com.example.trempel.CategoryRepository
 import com.example.trempel.network.CategoryDomainModel
 import com.example.trempel.network.model.CategoryModelItem
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-internal class MensCategoryViewModel @Inject constructor(
-    private val serviceRepository: MensCategoryRepository
+internal class CategoryProductsViewModel @Inject constructor(
+    private val serviceRepository: CategoryRepository
 ) : ViewModel() {
 
     private val _items = MutableLiveData<List<CategoryModelItem>>()
@@ -23,7 +23,7 @@ internal class MensCategoryViewModel @Inject constructor(
     val isInProgressTemp = ObservableBoolean(true)
 
     fun loadProduct(category: CategoryDomainModel) {
-        disposable = serviceRepository.getMensCategory(category)
+        disposable = serviceRepository.getProducts(category)
             .doOnSubscribe {
                 isInProgressTemp.set(true)
             }

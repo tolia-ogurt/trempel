@@ -1,9 +1,7 @@
 package com.example.trempel.ui.pdp
 
 import android.util.Log
-import android.view.View
 import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,8 +21,8 @@ internal class PdpViewModel @Inject constructor(
     private var disposable: Disposable? = null
     var isInProgress = ObservableBoolean(true)
 
-    fun loadProduct(idProduct: Int) {
-        disposable = serviceRepository.getProduct(idProduct)
+    fun loadProduct(productId: Int) {
+        disposable = serviceRepository.getProduct(productId)
             .doOnSubscribe {
                isInProgress.set(true)
             }

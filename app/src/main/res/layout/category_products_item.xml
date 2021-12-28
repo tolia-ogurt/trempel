@@ -5,18 +5,17 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
-            name="item"
-            type="com.example.trempel.network.model.CategoryModelItem" />
+            name="viewModel"
+            type="com.example.trempel.ui.products_in_category.CategoryProductItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:onClick="@{(view) -> viewModel.onItemClicked(view, viewModel.product.id)}">
 
 
         <View
@@ -45,7 +44,7 @@
 
         <ImageView
             android:id="@+id/iv_category_item"
-            imageUrl="@{item.image}"
+            imageUrl="@{viewModel.product.image}"
             android:layout_width="0dp"
             android:layout_height="@dimen/image_height_item"
             android:layout_marginStart="@dimen/normal_100"
@@ -69,7 +68,7 @@
             android:lineSpacingExtra="@{@dimen/small_100}"
             android:maxLines="2"
             android:paddingHorizontal="@dimen/small_150"
-            android:text="@{item.title}"
+            android:text="@{viewModel.product.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_product_item"
             app:dynamicMaxLines="@{true}"
@@ -87,9 +86,9 @@
             android:drawableEnd="@drawable/ic_bag"
             android:fontFamily="@font/montserrat_light"
             android:gravity="center"
-            android:paddingLeft="38dp"
-            android:paddingRight="26dp"
-            android:text="@{@string/product_price_format(item.price)}"
+            android:paddingLeft="@dimen/padding_left_btn_item_add_to_cart"
+            android:paddingRight="@dimen/padding_right_btn_item_add_to_cart"
+            android:text="@{@string/product_price_format(viewModel.product.price)}"
             android:textSize="@dimen/text_size_product_item"
             app:layout_constraintBottom_toBottomOf="@id/view_background_item"
             app:layout_constraintEnd_toEndOf="@id/view_background_item"

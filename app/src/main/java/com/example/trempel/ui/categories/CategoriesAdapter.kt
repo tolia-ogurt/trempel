@@ -6,15 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trempel.databinding.CategoryItemBinding
 import com.example.trempel.network.CategoryDomainModel
 
-class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
+internal class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
 
-    var categoryList = listOf<CategoryDomainModel>()
-    var onItemClicked: ((CategoryDomainModel) -> Unit)? = null
+    private var categoryList: List<CategoriesItemViewModel>? = null
 
     class CategoriesViewHolder(val binding: CategoryItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-    }
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -23,13 +20,14 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewH
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        holder.binding.category = categoryList[position]
-        holder.binding.containerAllCategories.setOnClickListener {
-            onItemClicked?.invoke(categoryList[position])
-        }
+        categoryList?.get(position).let { holder.binding.category = it }
+
     }
 
-    override fun getItemCount(): Int {
-        return categoryList.size
+    override fun getItemCount(): Int = categoryList?.size ?: 0
+
+    fun updateItems(items: List<CategoryDomainModel>?) {
+        categoryList = items?.map { CategoriesItemViewModel(it) }
+        notifyDataSetChanged()
     }
 }

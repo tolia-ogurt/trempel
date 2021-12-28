@@ -6,11 +6,11 @@ internal data class CategoryModelItem(
     val id: Int,
     val image: String,
     val price: Double,
-    val rating: RatingMensCategory,
+    val rating: RatingCategory,
     val title: String
 )
 
-internal data class RatingMensCategory(
+internal data class RatingCategory(
     val count: Int,
     val rate: Double
 )

@@ -32,7 +32,7 @@ internal class PdpFragment : Fragment() {
             this.lifecycleOwner = this@PdpFragment
             this.viewModel = this@PdpFragment.viewModel
         }.also {
-            viewModel.loadProduct(args.idProduct)
+            viewModel.loadProduct(args.productId)
             observeExceptionResponse()
         }.root
     }

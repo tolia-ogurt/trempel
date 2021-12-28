@@ -20,19 +20,19 @@
         android:label="PdpFragment"
         tools:layout="@layout/pdp_fragment">
         <argument
-            android:name="idProduct"
+            android:name="productId"
             app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/mensCategoryFragment"
-        android:name="com.example.trempel.ui.mens_category.MensCategoryFragment"
+        android:name="com.example.trempel.ui.products_in_category.CategoryProductsFragment"
         android:label="MensCategoryFragment"
-        tools:layout="@layout/mens_category_fragment">
+        tools:layout="@layout/category_products_fragment">
         <action
             android:id="@+id/action_mensCategoryFragment_to_pdpFragment"
             app:destination="@id/pdpFragment" />
         <argument
-            android:name="nameCategory"
+            android:name="category"
             app:argType="com.example.trempel.network.CategoryDomainModel" />
     </fragment>
 </navigation>

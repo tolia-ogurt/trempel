@@ -9,14 +9,15 @@
 
         <variable
             name="category"
-            type="com.example.trempel.network.CategoryDomainModel" />
+            type="com.example.trempel.ui.categories.CategoriesItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_all_categories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:onClick="@{(view) -> category.onItemClicked(view,category.category)}">
 
         <View
             android:id="@+id/view_background_item"
@@ -40,7 +41,7 @@
             android:layout_marginTop="@dimen/small_150"
             android:layout_marginEnd="@dimen/normal_100"
             android:scaleType="centerInside"
-            app:imageResource="@{category.image}"
+            app:imageResource="@{category.category.image}"
             app:layout_constraintBottom_toTopOf="@id/tv_category_name_item"
             app:layout_constraintEnd_toEndOf="@id/view_background_item"
             app:layout_constraintStart_toStartOf="@id/view_background_item"
@@ -53,7 +54,7 @@
             android:layout_height="0dp"
             android:fontFamily="@font/montserrat_light"
             android:gravity="center"
-            android:text="@{category.title}"
+            android:text="@{category.category.title}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/view_background_item"
             app:layout_constraintEnd_toEndOf="@id/view_background_item"

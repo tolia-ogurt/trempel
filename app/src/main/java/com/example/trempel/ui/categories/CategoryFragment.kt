@@ -7,21 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.trempel.MyApplication
 import com.example.trempel.R
 import com.example.trempel.databinding.CategoryFragmentBinding
-import com.example.trempel.network.CategoryDomainModel
 import javax.inject.Inject
 
 internal class CategoryFragment : Fragment(R.layout.category_fragment) {
-
-    private var _binding: CategoryFragmentBinding? = null
-    private val binding get() = _binding!!
-    private val adapter = CategoriesAdapter().apply {
-        this.onItemClicked = this@CategoryFragment::onItemClicked
-    }
 
     @Inject
     lateinit var viewModel: CategoryViewModel
@@ -36,31 +27,13 @@ internal class CategoryFragment : Fragment(R.layout.category_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = CategoryFragmentBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
-        initializationRecyclerAdapter()
-        observeLoadProduct()
-        observeExceptionResponse()
-        return binding.root
-    }
-
-    private fun onItemClicked(category: CategoryDomainModel) {
-        val action = CategoryFragmentDirections.actionCategoryFragmentToMensCategoryFragment(category)
-        findNavController().navigate(action)
-    }
-
-    private fun initializationRecyclerAdapter() {
-        val recyclerView = binding.recyclerViewAllCategories
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
-        binding.recyclerViewAllCategories.adapter = adapter
-    }
-
-    private fun observeLoadProduct() {
-        viewModel.categories.observe(this.viewLifecycleOwner, {
-            adapter.categoryList = it
-            adapter.notifyDataSetChanged()
-        })
-        viewModel.loadProduct()
+        return CategoryFragmentBinding.inflate(layoutInflater).apply {
+            this.lifecycleOwner = this@CategoryFragment
+            this.viewModel = this@CategoryFragment.viewModel
+        }.also {
+            observeExceptionResponse()
+            viewModel.loadProduct()
+        }.root
     }
 
     private fun observeExceptionResponse() {
