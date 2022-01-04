@@ -1,4 +1,4 @@
-package com.example.trempel.ui.categories
+package com.example.trempel.ui.login
 
 import android.content.Context
 import android.os.Bundle
@@ -7,15 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.trempel.MyApplication
 import com.example.trempel.R
-import com.example.trempel.databinding.CategoryFragmentBinding
+import com.example.trempel.databinding.SignInFragmentBinding
 import javax.inject.Inject
 
-internal class CategoryFragment : Fragment(R.layout.category_fragment) {
+internal class SignInFragment : Fragment(R.layout.sign_in_fragment) {
 
     @Inject
-    lateinit var viewModel: CategoryViewModel
+    lateinit var viewModel: SignInViewModel
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -27,18 +28,25 @@ internal class CategoryFragment : Fragment(R.layout.category_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return CategoryFragmentBinding.inflate(layoutInflater).apply {
-            this.lifecycleOwner = this@CategoryFragment
-            this.viewModel = this@CategoryFragment.viewModel
+        return SignInFragmentBinding.inflate(layoutInflater).apply {
+            this.lifecycleOwner = this@SignInFragment
+            this.viewModel = this@SignInFragment.viewModel
         }.also {
+            observeSuccessLogin()
             observeExceptionResponse()
-            viewModel.loadProduct()
         }.root
+    }
+
+    private fun observeSuccessLogin() {
+        viewModel.successLiveData.observe(this.viewLifecycleOwner, {
+            findNavController().navigate(R.id.action_loginFragment_to_categoryFragment)
+        })
     }
 
     private fun observeExceptionResponse() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.context, "Login or password is not correct", Toast.LENGTH_SHORT)
+                .show()
         })
     }
 

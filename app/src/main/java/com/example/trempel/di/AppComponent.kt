@@ -2,6 +2,9 @@ package com.example.trempel.di
 
 import android.content.Context
 import com.example.trempel.ui.categories.CategoryFragment
+import com.example.trempel.ui.login.SignInFragment
+import com.example.trempel.ui.login.SignInViewModel
+import com.example.trempel.ui.main_activity.MainActivity
 import com.example.trempel.ui.products_in_category.CategoryProductsFragment
 import com.example.trempel.ui.pdp.PdpFragment
 import dagger.BindsInstance
@@ -20,5 +23,7 @@ internal interface AppComponent {
     fun inject(pdpFragment: PdpFragment)
     fun inject(productsInCategory: CategoryProductsFragment)
     fun inject(categoryFragment: CategoryFragment)
+    fun inject(loginFragment: SignInFragment)
+    fun inject(mainActivity: MainActivity)
 }
 
