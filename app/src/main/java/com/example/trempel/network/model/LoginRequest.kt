@@ -1,6 +1,6 @@
 package com.example.trempel.network.model
 
-data class LoginRequest(
+internal data class LoginRequest(
     var username: String,
     var password: String
 )
