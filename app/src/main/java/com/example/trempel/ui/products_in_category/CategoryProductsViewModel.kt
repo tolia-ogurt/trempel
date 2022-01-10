@@ -32,9 +32,9 @@ internal class CategoryProductsViewModel @Inject constructor(
             }
             .subscribe({ response ->
                 _items.value = response
-            }, {
-                _errorLiveData.value = it.message
-                Log.e("Categories all", it.stackTraceToString())
+            }, { error ->
+                _errorLiveData.value = error.message
+                Log.e("Categories all", error.stackTraceToString())
             })
     }
 

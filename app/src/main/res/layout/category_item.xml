@@ -21,8 +21,8 @@
 
         <View
             android:id="@+id/view_background_item"
-            android:layout_width="160dp"
-            android:layout_height="144dp"
+            android:layout_width="@dimen/width_view_background_item"
+            android:layout_height="@dimen/height_view_background_item"
             android:layout_marginStart="@dimen/small_100"
             android:layout_marginTop="@dimen/small_100"
             android:layout_marginEnd="@dimen/small_125"
@@ -36,7 +36,7 @@
         <ImageView
             android:id="@+id/iv_category_item"
             android:layout_width="0dp"
-            android:layout_height="96dp"
+            android:layout_height="@dimen/height_image_category_item"
             android:layout_marginStart="@dimen/normal_100"
             android:layout_marginTop="@dimen/small_150"
             android:layout_marginEnd="@dimen/normal_100"

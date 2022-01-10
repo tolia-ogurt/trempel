@@ -36,4 +36,10 @@
     <dimen name="view_width_item">174dp</dimen>
     <dimen name="padding_right_btn_item_add_to_cart">26dp</dimen>
     <dimen name="padding_left_btn_item_add_to_cart">38dp</dimen>
+
+
+    <dimen name="width_view_background_item">160dp</dimen>
+    <dimen name="height_view_background_item">144dp</dimen>
+
+    <dimen name="height_image_category_item">96dp</dimen>
 </resources>
