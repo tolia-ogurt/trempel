@@ -41,6 +41,4 @@ internal class CategoryFragment : Fragment(R.layout.category_fragment) {
             Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
         })
     }
-
-
 }

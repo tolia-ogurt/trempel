@@ -36,6 +36,7 @@ internal class NetworkModule {
     fun provideCategoryService(retrofit: Retrofit): CategoryService {
         return retrofit.create(CategoryService::class.java)
     }
+
     @Provides
     @Singleton
     fun provideSignInService(retrofit: Retrofit): SignInService {
