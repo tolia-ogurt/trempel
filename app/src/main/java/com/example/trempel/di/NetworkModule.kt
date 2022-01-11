@@ -2,6 +2,7 @@ package com.example.trempel.di
 
 import com.example.trempel.network.service.CategoryService
 import com.example.trempel.network.service.ProductService
+import com.example.trempel.network.service.SignInService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -34,5 +35,11 @@ internal class NetworkModule {
     @Singleton
     fun provideCategoryService(retrofit: Retrofit): CategoryService {
         return retrofit.create(CategoryService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSignInService(retrofit: Retrofit): SignInService {
+        return retrofit.create(SignInService::class.java)
     }
 }

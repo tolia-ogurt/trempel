@@ -35,4 +35,15 @@
             android:name="category"
             app:argType="com.example.trempel.network.CategoryDomainModel" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.trempel.ui.login.SignInFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/sign_in_fragment">
+        <action
+            android:id="@+id/action_loginFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
