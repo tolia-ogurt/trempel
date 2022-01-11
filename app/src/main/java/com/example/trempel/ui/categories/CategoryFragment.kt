@@ -1,21 +1,21 @@
-package com.example.trempel
+package com.example.trempel.ui.categories
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.example.trempel.databinding.PdpFragmentBinding
+import com.example.trempel.MyApplication
+import com.example.trempel.R
+import com.example.trempel.databinding.CategoryFragmentBinding
 import javax.inject.Inject
 
-internal class PdpFragment : Fragment() {
+internal class CategoryFragment : Fragment(R.layout.category_fragment) {
 
     @Inject
-    lateinit var viewModel: PdpViewModel
+    lateinit var viewModel: CategoryViewModel
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -27,12 +27,12 @@ internal class PdpFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return PdpFragmentBinding.inflate(layoutInflater).apply {
-            this.lifecycleOwner = this@PdpFragment
-            this.viewModel = this@PdpFragment.viewModel
+        return CategoryFragmentBinding.inflate(layoutInflater).apply {
+            this.lifecycleOwner = this@CategoryFragment
+            this.viewModel = this@CategoryFragment.viewModel
         }.also {
-            viewModel.loadProduct()
             observeExceptionResponse()
+            viewModel.loadProduct()
         }.root
     }
 

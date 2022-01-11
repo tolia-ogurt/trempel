@@ -7,16 +7,32 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.trempel.CategoryFragment"
+        android:name="com.example.trempel.ui.categories.CategoryFragment"
         android:label="CategoryFragment"
         tools:layout="@layout/category_fragment">
         <action
-            android:id="@+id/action_categoryFragment_to_pdpFragment"
-            app:destination="@id/pdpFragment" />
+            android:id="@+id/action_categoryFragment_to_mensCategoryFragment"
+            app:destination="@id/mensCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/pdpFragment"
-        android:name="com.example.trempel.PdpFragment"
+        android:name="com.example.trempel.ui.pdp.PdpFragment"
         android:label="PdpFragment"
-        tools:layout="@layout/pdp_fragment" />
+        tools:layout="@layout/pdp_fragment">
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/mensCategoryFragment"
+        android:name="com.example.trempel.ui.products_in_category.CategoryProductsFragment"
+        android:label="MensCategoryFragment"
+        tools:layout="@layout/category_products_fragment">
+        <action
+            android:id="@+id/action_mensCategoryFragment_to_pdpFragment"
+            app:destination="@id/pdpFragment" />
+        <argument
+            android:name="category"
+            app:argType="com.example.trempel.network.CategoryDomainModel" />
+    </fragment>
 </navigation>

@@ -1,7 +1,8 @@
-package com.example.trempel
+package com.example.trempel.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.trempel.R
 
 internal class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
