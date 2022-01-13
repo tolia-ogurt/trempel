@@ -10,10 +10,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.trempel.network.CategoryDomainModel
-import com.example.trempel.network.model.CategoryModelItem
-import com.example.trempel.ui.categories.CategoriesAdapter
-import com.example.trempel.ui.products_in_category.CategoryProductsRecyclerAdapter
+import com.example.trempel.ui.DataBindingRecyclerAdapter
+import com.example.trempel.ui.RecyclerItem
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
@@ -52,26 +50,15 @@ fun View.setVisibility(isVisible: Boolean) {
     this.scaleX = if (isVisible) 1f else 0f
 }
 
-@BindingAdapter("itemViewModels")
-internal fun bindItemViewModels(recyclerView: RecyclerView, itemList: List<CategoryModelItem>?) {
-    val adapter = getOrCreateProductsAdapter(recyclerView)
-    adapter.updateItems(itemList)
+@BindingAdapter("items")
+fun setRecyclerViewItems(recyclerView: RecyclerView, items: List<RecyclerItem>?) {
+    var adapter = (recyclerView.adapter as? DataBindingRecyclerAdapter)
+    if (adapter == null) {
+        adapter = DataBindingRecyclerAdapter()
+        recyclerView.adapter = adapter
+    }
+    adapter.submitList(items.orEmpty())
 }
 
-private fun getOrCreateProductsAdapter(recyclerView: RecyclerView): CategoryProductsRecyclerAdapter {
-        val productsInCategoryRecyclerAdapter = CategoryProductsRecyclerAdapter()
-        recyclerView.adapter = productsInCategoryRecyclerAdapter
-        return productsInCategoryRecyclerAdapter
-}
 
-@BindingAdapter("itemViewModels")
-internal fun bindCategoryItemViewModels(recyclerView: RecyclerView, itemList: List<CategoryDomainModel>?) {
-    val adapter = getOrCreateCategoriesAdapter(recyclerView)
-    adapter.updateItems(itemList)
-}
 
-private fun getOrCreateCategoriesAdapter(recyclerView: RecyclerView): CategoriesAdapter {
-    val categoriesAdapter = CategoriesAdapter()
-    recyclerView.adapter = categoriesAdapter
-    return categoriesAdapter
-}
