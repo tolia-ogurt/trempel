@@ -30,7 +30,7 @@ internal class NetworkModule {
     fun provideProductService(retrofit: Retrofit): ProductService {
         return retrofit.create(ProductService::class.java)
     }
-
+ 
     @Provides
     @Singleton
     fun provideCategoryService(retrofit: Retrofit): CategoryService {
