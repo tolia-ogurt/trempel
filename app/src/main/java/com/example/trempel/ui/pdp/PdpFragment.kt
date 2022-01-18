@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trempel.MyApplication
 import com.example.trempel.databinding.PdpFragmentBinding
-import com.example.trempel.ui.mens_category.MensCategoryFragmentDirections
 import javax.inject.Inject
 
 internal class PdpFragment : Fragment() {
@@ -39,7 +37,7 @@ internal class PdpFragment : Fragment() {
             this.lifecycleOwner = this@PdpFragment
             this.viewModel = this@PdpFragment.viewModel
         }.also {
-//            it.initializationRecyclerAdapter()
+            it.initializationRecyclerAdapter()
             viewModel.loadProduct(args.productId)
             observeExceptionResponse()
             viewModel.getRecentlyViewedProduct(args.idProduct)
@@ -58,11 +56,11 @@ internal class PdpFragment : Fragment() {
         })
     }
 
-//    private fun PdpFragmentBinding.initializationRecyclerAdapter() {
-//        listRecentlyViewed.layoutManager =
-//            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//        listRecentlyViewed.adapter = adapter
-//    }
+    private fun PdpFragmentBinding.initializationRecyclerAdapter() {
+        rvRecentlyView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvRecentlyView.adapter = adapter
+    }
 
     private fun observeRecentlyViewedProduct() {
         viewModel.allRecentlyViewedProduct.observe(this.viewLifecycleOwner, {
