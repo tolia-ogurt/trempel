@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.trempel.ui.pdp.PdpViewModel" />
@@ -27,8 +28,7 @@
             android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/pdp_rounded_background"
-            tools:layout_editor_absoluteY="336dp" />
+            android:background="@drawable/pdp_rounded_background" />
 
         <TextView
             android:id="@+id/tv_product_title"
@@ -114,8 +114,6 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_product_description"
             app:dynamicMaxLines="@{true}"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="470dp"
             tools:text="@string/product_description" />
 
         <androidx.core.widget.NestedScrollView
@@ -130,19 +128,17 @@
 
                 <TextView
                     android:id="@+id/tv_product_description_scroll"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/normal_150"
                     android:layout_marginEnd="@dimen/normal_150"
                     android:ellipsize="end"
                     android:fontFamily="@font/montserrat_light"
                     android:justificationMode="inter_word"
-                    android:lineHeight="@dimen/normal_100"
+                    android:lineSpacingExtra="@dimen/small_100"
                     android:text="@{viewModel.product.description}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_product_description"
-                    tools:layout_editor_absoluteX="32dp"
-                    tools:layout_editor_absoluteY="470dp"
                     tools:text="@string/product_description" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -150,7 +146,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal_200"
-                    android:layout_marginBottom="@dimen/large_175"
                     tools:listitem="@layout/recently_viewed_item" />
 
             </LinearLayout>

@@ -4,8 +4,6 @@ import com.example.trempel.network.service.CategoryService
 import android.content.Context
 import androidx.room.Room
 import com.example.trempel.db.AppDataBase
-import com.example.trempel.network.service.CategoryService
-import com.example.trempel.network.service.MensCategoryService
 import com.example.trempel.network.service.ProductService
 import com.example.trempel.network.service.SignInService
 import dagger.Module
@@ -46,17 +44,6 @@ internal class NetworkModule {
     @Singleton
     fun provideSignInService(retrofit: Retrofit): SignInService {
         return retrofit.create(SignInService::class.java)
-    }
-    @Provides
-    @Singleton
-    fun provideMensCategoryService(retrofit: Retrofit): MensCategoryService {
-        return retrofit.create(MensCategoryService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideCategoryService(retrofit: Retrofit): CategoryService {
-        return retrofit.create(CategoryService::class.java)
     }
 
     @Provides

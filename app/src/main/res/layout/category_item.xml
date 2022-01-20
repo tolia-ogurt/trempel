@@ -62,7 +62,7 @@
             android:id="@+id/view_background_item"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/item_background"
+            android:background="@drawable/item_category_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
