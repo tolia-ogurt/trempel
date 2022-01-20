@@ -8,7 +8,7 @@ import com.example.trempel.ui.RecyclerItemComparator
 
 internal class CategoriesItemViewModel(
     val category: CategoryDomainModel
-) : ViewModel(),RecyclerItemComparator {
+) : ViewModel(), RecyclerItemComparator {
 
     fun onItemClicked(view: View, category: CategoryDomainModel) {
         val action = CategoryFragmentDirections.actionCategoryFragmentToMensCategoryFragment(category)

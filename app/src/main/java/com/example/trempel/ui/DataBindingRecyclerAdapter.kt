@@ -7,7 +7,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class DataBindingRecyclerAdapter :
+internal class DataBindingRecyclerAdapter :
     ListAdapter<RecyclerItem, DataBindingRecyclerAdapter.BindingViewHolder>(DiffCallback()) {
 
     override fun getItemViewType(position: Int): Int {

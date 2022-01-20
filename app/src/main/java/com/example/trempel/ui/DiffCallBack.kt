@@ -2,7 +2,7 @@ package com.example.trempel.ui
 
 import androidx.recyclerview.widget.DiffUtil
 
-class DiffCallback : DiffUtil.ItemCallback<RecyclerItem>() {
+internal class DiffCallback : DiffUtil.ItemCallback<RecyclerItem>() {
     override fun areItemsTheSame(
         oldItem: RecyclerItem,
         newItem: RecyclerItem

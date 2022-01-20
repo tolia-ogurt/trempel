@@ -51,7 +51,7 @@ fun View.setVisibility(isVisible: Boolean) {
 }
 
 @BindingAdapter("items")
-fun setRecyclerViewItems(recyclerView: RecyclerView, items: List<RecyclerItem>?) {
+internal fun setRecyclerViewItems(recyclerView: RecyclerView, items: List<RecyclerItem>?) {
     var adapter = (recyclerView.adapter as? DataBindingRecyclerAdapter)
     if (adapter == null) {
         adapter = DataBindingRecyclerAdapter()
