@@ -75,7 +75,3 @@ private fun getOrCreateCategoriesAdapter(recyclerView: RecyclerView): Categories
     recyclerView.adapter = categoriesAdapter
     return categoriesAdapter
 }
-
-
-
-

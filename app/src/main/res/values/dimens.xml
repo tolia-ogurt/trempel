@@ -31,7 +31,6 @@
     <dimen name="normal_text_size">18sp</dimen>
     <dimen name="large_text_size">24sp</dimen>
 
-
     <dimen name="card_corner_radius_size">10sp</dimen>
 
     <dimen name="image_size_category">107dp</dimen>
@@ -39,13 +38,10 @@
     <dimen name="image_height_item">136dp</dimen>
     <dimen name="trempel_logo_size">210dp</dimen>
 
-
     <dimen name="view_bag_height_item">20dp</dimen>
     <dimen name="view_height_item">256dp</dimen>
-    <dimen name="view_width_item">174dp</dimen>
     <dimen name="padding_right_btn_item_add_to_cart">26dp</dimen>
     <dimen name="padding_left_btn_item_add_to_cart">38dp</dimen>
-
 
     <dimen name="width_view_background_item">160dp</dimen>
     <dimen name="height_view_background_item">144dp</dimen>

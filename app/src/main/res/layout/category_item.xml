@@ -14,24 +14,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_all_categories"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginTop="@dimen/normal_100"
         android:background="@color/white"
         android:onClick="@{(view) -> category.onItemClicked(view,category.category)}">
-
-        <View
-            android:id="@+id/view_background_item"
-            android:layout_width="@dimen/width_view_background_item"
-            android:layout_height="@dimen/height_view_background_item"
-            android:layout_marginStart="@dimen/small_100"
-            android:layout_marginTop="@dimen/small_100"
-            android:layout_marginEnd="@dimen/small_125"
-            android:layout_marginBottom="@dimen/small_100"
-            android:background="@drawable/item_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_category_item"
@@ -42,24 +30,36 @@
             android:layout_marginEnd="@dimen/normal_100"
             android:scaleType="centerInside"
             app:imageResource="@{category.category.image}"
-            app:layout_constraintBottom_toTopOf="@id/tv_category_name_item"
-            app:layout_constraintEnd_toEndOf="@id/view_background_item"
-            app:layout_constraintStart_toStartOf="@id/view_background_item"
-            app:layout_constraintTop_toTopOf="@id/view_background_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/image_mens_category" />
 
         <TextView
             android:id="@+id/tv_category_name_item"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_100"
             android:fontFamily="@font/montserrat_light"
             android:gravity="center"
             android:text="@{category.category.title}"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/view_background_item"
-            app:layout_constraintEnd_toEndOf="@id/view_background_item"
-            app:layout_constraintStart_toStartOf="@id/view_background_item"
-            app:layout_constraintTop_toBottomOf="@id/iv_category_item" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_category_item"
+            tools:text="@string/all_category_title" />
+
+
+        <View
+            android:id="@+id/view_background_item"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/item_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

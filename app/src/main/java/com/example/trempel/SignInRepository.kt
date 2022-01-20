@@ -1,10 +1,8 @@
 package com.example.trempel
 
 import com.example.trempel.network.model.LoginRequest
-import com.example.trempel.network.model.LoginResponse
 import com.example.trempel.network.service.SignInService
 import io.reactivex.Completable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

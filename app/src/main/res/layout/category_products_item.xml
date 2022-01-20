@@ -12,20 +12,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginTop="@dimen/small_125"
+        android:layout_marginBottom="@dimen/small_125"
         android:background="@color/white"
         android:onClick="@{(view) -> viewModel.onItemClicked(view, viewModel.product.id)}">
 
-
         <View
             android:id="@+id/view_background_item"
-            android:layout_width="@dimen/view_width_item"
+            android:layout_width="0dp"
             android:layout_height="@dimen/view_height_item"
-            android:layout_marginStart="@dimen/small_100"
-            android:layout_marginTop="@dimen/small_100"
-            android:layout_marginEnd="@dimen/small_125"
-            android:layout_marginBottom="@dimen/small_100"
             android:background="@drawable/item_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +85,7 @@
             android:fontFamily="@font/montserrat_light"
             android:gravity="center"
             android:paddingLeft="@dimen/padding_left_btn_item_add_to_cart"
-            android:paddingRight="@dimen/padding_right_btn_item_add_to_cart"
+            android:paddingRight="@dimen/small_175"
             android:text="@{@string/product_price_format(viewModel.product.price)}"
             android:textSize="@dimen/small_text_size"
             app:layout_constraintBottom_toBottomOf="@id/view_background_item"
