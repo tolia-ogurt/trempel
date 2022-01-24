@@ -23,9 +23,11 @@
             android:fontFamily="@font/montserrat_light"
             android:lineSpacingExtra="@dimen/small_100"
             android:textSize="@dimen/normal_text_size"
+            app:contentInsetStartWithNavigation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/btn_back"
+            app:titleMarginStart="0dp"
             app:titleTextColor="@color/black"
             tools:title="Men’s clothing" />
 

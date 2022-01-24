@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.trempel.MyApplication
 import com.example.trempel.R
 import com.example.trempel.databinding.CategoryFragmentBinding
+import com.example.trempel.databinding.CategoryProductsFragmentBinding
 import javax.inject.Inject
 
 internal class CategoryFragment : Fragment(R.layout.category_fragment) {
@@ -31,6 +33,7 @@ internal class CategoryFragment : Fragment(R.layout.category_fragment) {
             this.lifecycleOwner = this@CategoryFragment
             this.viewModel = this@CategoryFragment.viewModel
         }.also {
+            it.navigateWithToolbar()
             observeExceptionResponse()
             viewModel.loadProduct()
         }.root
@@ -40,5 +43,11 @@ internal class CategoryFragment : Fragment(R.layout.category_fragment) {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
             Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
         })
+    }
+
+    private fun CategoryFragmentBinding.navigateWithToolbar() {
+        this.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

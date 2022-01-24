@@ -24,7 +24,7 @@ internal class PdpViewModel @Inject constructor(
     fun loadProduct(productId: Int) {
         disposable = serviceRepository.getProduct(productId)
             .doOnSubscribe {
-               isInProgress.set(true)
+                isInProgress.set(true)
             }
             .doFinally {
                 isInProgress.set(false)

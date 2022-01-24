@@ -39,7 +39,7 @@ internal class SignInFragment : Fragment(R.layout.sign_in_fragment) {
 
     private fun observeSuccessLogin() {
         viewModel.successLiveData.observe(this.viewLifecycleOwner, {
-            findNavController().navigate(R.id.action_loginFragment_to_categoryFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
         })
     }
 
