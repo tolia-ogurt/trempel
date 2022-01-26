@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trempel.databinding.RecentlyViewedItemBinding
 import com.example.trempel.db.RecentlyViewed
+import com.example.trempel.network.CategoryDomainModel
+import com.example.trempel.ui.categories.CategoriesItemViewModel
 
 internal class RecentlyViewedAdapter :
     ListAdapter<RecentlyViewed, RecentlyViewedAdapter.RecentlyViewHolder>(RecentlyViewedComparator()) {
 
-    var itemList = mutableListOf<RecentlyViewed>()
+    var itemList = listOf<RecentlyViewed>()
     var onItemClicked: ((Int) -> Unit)? = null
 
     class RecentlyViewHolder(
@@ -36,7 +38,7 @@ internal class RecentlyViewedAdapter :
     }
 }
 
-class RecentlyViewedComparator : DiffUtil.ItemCallback<RecentlyViewed>() {
+internal class RecentlyViewedComparator : DiffUtil.ItemCallback<RecentlyViewed>() {
     override fun areItemsTheSame(oldItem: RecentlyViewed, newItem: RecentlyViewed): Boolean {
         return oldItem == newItem
     }

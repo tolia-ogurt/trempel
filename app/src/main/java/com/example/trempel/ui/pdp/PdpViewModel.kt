@@ -6,28 +6,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.trempel.ProductRepository
-import com.example.trempel.RoomRecentlyViewedRepository
+import com.example.trempel.RecentlyViewedRepository
 import com.example.trempel.db.RecentlyViewed
 import com.example.trempel.network.model.DomainModel
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 internal class PdpViewModel @Inject constructor(
     private val serviceRepository: ProductRepository,
-    private val roomRepository: RoomRecentlyViewedRepository
+    private val roomRepository: RecentlyViewedRepository
 ) : ViewModel() {
 
     private val _product = MutableLiveData<DomainModel>()
     val product: LiveData<DomainModel> get() = _product
     private val _errorLiveData = MutableLiveData<String>()
     val errorLiveData: LiveData<String> get() = _errorLiveData
-    private var disposable: Disposable? = null
-    private val _allRecentlyViewedProduct = MutableLiveData<MutableList<RecentlyViewed>>()
-    val allRecentlyViewedProduct: LiveData<MutableList<RecentlyViewed>> get() = _allRecentlyViewedProduct
+    private val disposable = CompositeDisposable()
+    private val _allRecentlyViewedProduct = MutableLiveData<List<RecentlyViewed>>()
+    val allRecentlyViewedProduct: LiveData<List<RecentlyViewed>> get() = _allRecentlyViewedProduct
     var isInProgress = ObservableBoolean(true)
 
     fun loadProduct(productId: Int) {
-        disposable = serviceRepository.getProduct(productId)
+        disposable += serviceRepository.getProduct(productId)
             .doOnSubscribe {
                 isInProgress.set(true)
             }
@@ -46,7 +47,7 @@ internal class PdpViewModel @Inject constructor(
     }
 
     fun getRecentlyViewedProduct(idProduct: Int) {
-        disposable = roomRepository.getLatestRecentlyViewed(idProduct)
+        disposable += roomRepository.getLatestRecentlyViewed(idProduct)
             .subscribe({
                 _allRecentlyViewedProduct.value = it
             }, {
@@ -55,12 +56,16 @@ internal class PdpViewModel @Inject constructor(
     }
 
     private fun addRecentlyViewedProduct(productDomainModel: DomainModel) {
-        disposable = roomRepository.addRecentlyProductViewed(productDomainModel)
-            .subscribe({}, {})
+        disposable += roomRepository.addRecentlyViewed(productDomainModel)
+            .subscribe()
     }
 
     override fun onCleared() {
-        disposable?.dispose()
+        disposable.dispose()
         super.onCleared()
+    }
+
+    operator fun CompositeDisposable.plusAssign(disposable: Disposable){
+        this.add(disposable)
     }
 }

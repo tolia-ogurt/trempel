@@ -40,8 +40,8 @@ internal class PdpFragment : Fragment() {
             it.initializationRecyclerAdapter()
             viewModel.loadProduct(args.productId)
             observeExceptionResponse()
-            viewModel.getRecentlyViewedProduct(args.productId)
             observeRecentlyViewedProduct()
+            viewModel.getRecentlyViewedProduct(args.productId)
         }.root
     }
 

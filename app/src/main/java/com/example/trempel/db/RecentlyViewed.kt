@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "recently_viewed")
-data class RecentlyViewed(
+internal data class RecentlyViewed(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "title_product")
     val titleProduct: String,

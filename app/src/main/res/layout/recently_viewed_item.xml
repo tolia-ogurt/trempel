@@ -14,8 +14,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_recently_view_item"
-        android:layout_width="150dp"
-        android:layout_height="220dp">
+        android:layout_width="@dimen/width_item_recently_viewed"
+        android:layout_height="@dimen/height_item_recently_viewed">
 
 
         <View
