@@ -60,6 +60,3 @@ internal fun setRecyclerViewItems(recyclerView: RecyclerView, items: List<Recycl
     }
     adapter.submitList(items.orEmpty())
 }
-
-
-

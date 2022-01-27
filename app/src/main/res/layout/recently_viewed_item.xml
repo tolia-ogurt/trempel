@@ -15,7 +15,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_recently_view_item"
         android:layout_width="@dimen/width_item_recently_viewed"
-        android:layout_height="@dimen/height_item_recently_viewed">
+        android:layout_height="@dimen/height_item_recently_viewed"
+        android:background="@color/white">
 
 
         <View
@@ -32,47 +33,45 @@
             android:id="@+id/iv_recently_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="centerInside"
-            tools:src="@drawable/image_product"
-            app:imageUrl="@{recentlyView.image}"
+            android:layout_marginStart="@dimen/small_100"
             android:layout_marginTop="@dimen/small_150"
             android:layout_marginEnd="@dimen/small_100"
-            android:layout_marginStart="@dimen/small_100"
             android:layout_marginBottom="@dimen/small_125"
+            android:scaleType="centerInside"
+            app:imageUrl="@{recentlyView.image}"
             app:layout_constraintBottom_toTopOf="@id/tv_title_recently_view"
             app:layout_constraintEnd_toEndOf="@id/view_background"
             app:layout_constraintStart_toStartOf="@id/view_background"
-            app:layout_constraintTop_toTopOf="@id/view_background" />
+            app:layout_constraintTop_toTopOf="@id/view_background"
+            tools:src="@drawable/image_product" />
 
         <TextView
             android:id="@+id/tv_title_recently_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{recentlyView.titleProduct}"
-            tools:text="@string/product_title"
-            android:textColor="@color/black"
-            android:maxLines="1"
+            android:layout_marginStart="@dimen/small_100"
+            android:layout_marginBottom="@dimen/small_150"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{recentlyView.titleProduct}"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/view_background"
             app:layout_constraintEnd_toStartOf="@id/tv_price_recently_view_item"
             app:layout_constraintStart_toStartOf="@id/iv_recently_view"
-            android:layout_marginBottom="@dimen/small_150"
-            android:layout_marginStart="@dimen/small_100"
-            />
+            tools:text="@string/product_title" />
 
         <TextView
             android:id="@+id/tv_price_recently_view_item"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:maxLines="1"
+            android:text="@{@string/product_price_format(recentlyView.price)}"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/tv_title_recently_view"
             app:layout_constraintEnd_toEndOf="@id/iv_recently_view"
             app:layout_constraintStart_toEndOf="@id/tv_title_recently_view"
             app:layout_constraintTop_toTopOf="@id/tv_title_recently_view"
-            android:maxLines="1"
-            android:text="@{@string/product_price_format(recentlyView.price)}"
-            tools:text="@string/product_price_format"
-            android:textColor="@color/black"
-            />
+            tools:text="@string/product_price_format" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
