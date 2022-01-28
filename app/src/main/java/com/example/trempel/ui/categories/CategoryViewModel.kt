@@ -20,7 +20,7 @@ internal class CategoryViewModel @Inject constructor(
     private val _errorLiveData = MutableLiveData<String>()
     val errorLiveData: LiveData<String> get() = _errorLiveData
     private var disposable: Disposable? = null
-    var isInProgressTemp = ObservableBoolean(true)
+    val isInProgressTemp = ObservableBoolean(true)
 
     fun loadProduct() {
         disposable = categoryRepository.getAllCategories()
