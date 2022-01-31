@@ -44,7 +44,7 @@ internal class CategoryProductsFragment : Fragment() {
     }
 
     private fun CategoryProductsFragmentBinding.navigateWithToolbar() {
-        this.toolbar.title = args.category.title
+        this.toolbar.title = args.category.title.replaceFirstChar { it.uppercase() }
         this.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }

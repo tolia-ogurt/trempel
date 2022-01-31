@@ -18,7 +18,7 @@ internal class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navController = Navigation.findNavController(this, R.id.container_view)
         if (viewModel.isLoggedIn) {
-            navController.navigate(R.id.categoryFragment)
+            navController.navigate(R.id.homePageFragment)
         } else {
             navController.navigate(R.id.loginFragment)
         }
