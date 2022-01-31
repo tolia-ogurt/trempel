@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/homePageFragment">
+    android:id="@+id/nav_graph_home_page"
+    app:startDestination="@id/categoryFragment">
 
     <fragment
         android:id="@+id/categoryFragment"
@@ -41,18 +41,9 @@
         android:label="LoginFragment"
         tools:layout="@layout/sign_in_fragment">
         <action
-            android:id="@+id/action_loginFragment_to_homePageFragment"
-            app:destination="@id/homePageFragment"
+            android:id="@+id/action_loginFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/homePageFragment"
-        android:name="com.example.trempel.ui.home_page.HomePageFragment"
-        android:label="HomePageFragment"
-        tools:layout="@layout/home_page_fragment">
-        <action
-            android:id="@+id/action_homePageFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
     </fragment>
 </navigation>
