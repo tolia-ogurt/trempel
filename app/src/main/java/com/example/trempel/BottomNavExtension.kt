@@ -9,7 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.trempel.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-fun BottomNavigationView.setupWithNavController(
+internal fun BottomNavigationView.setupWithNavController(
     navGraphIds: List<Int>,
     fragmentManager: FragmentManager,
     containerId: Int,

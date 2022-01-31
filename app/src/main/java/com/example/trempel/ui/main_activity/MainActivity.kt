@@ -24,12 +24,14 @@ internal class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navController = Navigation.findNavController(this, R.id.container_view)
-        if (viewModel.isLoggedIn) {
-            navController.navigate(R.id.categoryFragment)
-        } else {
-            navController.navigate(R.id.loginFragment)
+        setContentView(binding.root)
+        firstSignIn()
+        setUpBottomNav()
+    }
+
+    private fun firstSignIn() {
+        if (!viewModel.isLoggedIn) {
+            navController?.navigate(R.id.loginFragment)
         }
     }
 
