@@ -49,5 +49,12 @@
 
     <dimen name="height_image_category_item">96dp</dimen>
 
+    <dimen name="text_size_product_title">18sp</dimen>
+    <dimen name="text_size_product_price">24sp</dimen>
+    <dimen name="text_size_product_description">16sp</dimen>
+
     <dimen name="card_corner_radius">10dp</dimen>
+
+    <dimen name="width_item_recently_viewed">150dp</dimen>
+    <dimen name="height_item_recently_viewed">220dp</dimen>
 </resources>

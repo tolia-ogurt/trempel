@@ -22,6 +22,9 @@
         <argument
             android:name="productId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_pdpFragment_self"
+            app:destination="@id/pdpFragment" />
     </fragment>
     <fragment
         android:id="@+id/mensCategoryFragment"
