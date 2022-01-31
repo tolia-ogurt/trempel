@@ -11,7 +11,6 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.trempel.ui.DataBindingRecyclerAdapter
-import com.example.trempel.ui.pdp.RecentlyViewedAdapter
 import com.example.trempel.ui.RecyclerItem
 
 @BindingAdapter("imageUrl")

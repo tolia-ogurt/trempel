@@ -19,9 +19,6 @@ internal class PdpFragment : Fragment() {
     @Inject
     lateinit var viewModel: PdpViewModel
     private val args: PdpFragmentArgs by navArgs()
-    private val adapter = RecentlyViewedAdapter().apply {
-        onItemClicked = this@PdpFragment::onItemClicked
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -37,35 +34,15 @@ internal class PdpFragment : Fragment() {
             this.lifecycleOwner = this@PdpFragment
             this.viewModel = this@PdpFragment.viewModel
         }.also {
-            it.initializationRecyclerAdapter()
             viewModel.loadProduct(args.productId)
             observeExceptionResponse()
-            observeRecentlyViewedProduct()
             viewModel.getRecentlyViewedProduct(args.productId)
         }.root
-    }
-
-    private fun onItemClicked(id: Int) {
-        val action = PdpFragmentDirections.actionPdpFragmentSelf(id)
-        findNavController().navigate(action)
     }
 
     private fun observeExceptionResponse() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
             Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
-        })
-    }
-
-    private fun PdpFragmentBinding.initializationRecyclerAdapter() {
-        rvRecentlyView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rvRecentlyView.adapter = adapter
-    }
-
-    private fun observeRecentlyViewedProduct() {
-        viewModel.allRecentlyViewedProduct.observe(this.viewLifecycleOwner, {
-            adapter.itemList = it
-            adapter.notifyDataSetChanged()
         })
     }
 }

@@ -9,21 +9,23 @@
 
         <variable
             name="recentlyView"
-            type="com.example.trempel.db.RecentlyViewed" />
+            type="com.example.trempel.ui.pdp.RecentlyViewedItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_recently_view_item"
         android:layout_width="@dimen/width_item_recently_viewed"
         android:layout_height="@dimen/height_item_recently_viewed"
-        android:background="@color/white">
+        android:layout_marginStart="@dimen/small_100"
+        android:layout_marginEnd="@dimen/small_100"
+        android:onClick="@{(view) -> recentlyView.onItemClicked(view,recentlyView.product.id)}">
 
 
         <View
             android:id="@+id/view_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/item_background"
+            android:background="@drawable/item_background_recently_viewed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,12 +40,11 @@
             android:layout_marginEnd="@dimen/small_100"
             android:layout_marginBottom="@dimen/small_125"
             android:scaleType="centerInside"
-            app:imageUrl="@{recentlyView.image}"
+            app:imageUrl="@{recentlyView.product.image}"
             app:layout_constraintBottom_toTopOf="@id/tv_title_recently_view"
             app:layout_constraintEnd_toEndOf="@id/view_background"
             app:layout_constraintStart_toStartOf="@id/view_background"
-            app:layout_constraintTop_toTopOf="@id/view_background"
-            tools:src="@drawable/image_product" />
+            app:layout_constraintTop_toTopOf="@id/view_background" />
 
         <TextView
             android:id="@+id/tv_title_recently_view"
@@ -53,7 +54,7 @@
             android:layout_marginBottom="@dimen/small_150"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{recentlyView.titleProduct}"
+            android:text="@{recentlyView.product.titleProduct}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/view_background"
             app:layout_constraintEnd_toStartOf="@id/tv_price_recently_view_item"
@@ -65,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:maxLines="1"
-            android:text="@{@string/product_price_format(recentlyView.price)}"
+            android:text="@{@string/product_price_format(recentlyView.product.price)}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/tv_title_recently_view"
             app:layout_constraintEnd_toEndOf="@id/iv_recently_view"
