@@ -1,4 +1,4 @@
-package com.example.trempel.ui.login
+package com.example.login.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,19 +8,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.trempel.MyApplication
-import com.example.trempel.R
-import com.example.trempel.databinding.SignInFragmentBinding
+import com.example.login.databinding.SignInFragmentBinding
+import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-internal class SignInFragment : Fragment(R.layout.sign_in_fragment) {
+class SignInFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: SignInViewModel
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().application as MyApplication).appComponent.inject(this)
+        AndroidSupportInjection.inject(this)
     }
 
     override fun onCreateView(
@@ -39,7 +38,7 @@ internal class SignInFragment : Fragment(R.layout.sign_in_fragment) {
 
     private fun observeSuccessLogin() {
         viewModel.successLiveData.observe(this.viewLifecycleOwner, {
-            findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
+            findNavController().popBackStack()
         })
     }
 

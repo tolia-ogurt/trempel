@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.trempel.ui.login.SignInViewModel" />
+            type="com.example.login.ui.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

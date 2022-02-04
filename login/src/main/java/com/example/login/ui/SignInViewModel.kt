@@ -1,14 +1,14 @@
-package com.example.trempel.ui.login
+package com.example.login.ui
 
+import androidx.databinding.ktx.BuildConfig
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trempel.BuildConfig
-import com.example.trempel.SignInRepository
+import com.example.login.repo.SignInRepository
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-internal class SignInViewModel @Inject constructor(
+class SignInViewModel @Inject constructor(
     private val signInRepository: SignInRepository
 ) : ViewModel() {
 

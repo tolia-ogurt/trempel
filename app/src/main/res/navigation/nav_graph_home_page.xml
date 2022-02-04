@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.trempel.ui.login.SignInFragment"
+        android:name="com.example.login.ui.SignInFragment"
         android:label="LoginFragment"
         tools:layout="@layout/sign_in_fragment">
         <action

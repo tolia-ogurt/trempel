@@ -7,6 +7,10 @@ import androidx.navigation.NavController
 import com.example.trempel.MyApplication
 import com.example.trempel.R
 import com.example.trempel.databinding.ActivityMainBinding
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import setupWithNavController
 import javax.inject.Inject
 
@@ -14,8 +18,8 @@ internal class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModel: MainViewModel
+
     private var currentNavController: LiveData<NavController>? = null
-    private var navController: NavController? = null
 
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -25,13 +29,13 @@ internal class MainActivity : AppCompatActivity() {
         (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        firstSignIn()
         setUpBottomNav()
+        firstSignIn()
     }
 
     private fun firstSignIn() {
         if (!viewModel.isLoggedIn) {
-            navController?.navigate(R.id.loginFragment)
+            currentNavController?.value?.navigate(R.id.loginFragment)
         }
     }
 

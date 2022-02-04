@@ -1,13 +1,13 @@
-package com.example.trempel
+package com.example.login.repo
 
-import com.example.trempel.network.model.LoginRequest
-import com.example.trempel.network.service.SignInService
+import com.example.login.model.LoginRequest
+import com.example.login.service.SignInService
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-internal class SignInRepository @Inject constructor(
+class SignInRepository @Inject constructor(
     private val sessionManager: SessionManager, private val retrofitService: SignInService
 ) {
 

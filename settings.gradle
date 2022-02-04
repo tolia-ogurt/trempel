@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Trempel"
 include ':app'
+include ':login'

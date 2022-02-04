@@ -1,10 +1,11 @@
-package com.example.trempel
+package com.example.login.repo
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.login.R
 import javax.inject.Inject
 
-internal class SessionManager @Inject constructor(context: Context) {
+class SessionManager @Inject constructor(context: Context) {
 
     private var prefs: SharedPreferences = context.getSharedPreferences(
         context.getString(R.string.app_name),
