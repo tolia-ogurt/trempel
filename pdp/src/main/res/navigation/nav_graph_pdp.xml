@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_pdp"
+    app:startDestination="@id/pdpFragment">
+
+    <fragment
+        android:id="@+id/pdpFragment"
+        android:name="com.example.pdp.ui.PdpFragment"
+        android:label="PdpFragment"
+        tools:layout="@layout/pdp_fragment">
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_pdpFragment_self"
+            app:destination="@id/pdpFragment" />
+    </fragment>
+
+</navigation>

@@ -116,6 +116,7 @@
             android:onClick="@{()-> viewModel.login()}"
             android:text="@string/btn_login"
             android:textSize="@dimen/normal_text_size"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/til_password"
             app:layout_constraintStart_toStartOf="@id/til_password"

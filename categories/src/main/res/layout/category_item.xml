@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="category"
+            type="com.example.categories.ui.categories.CategoriesItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_all_categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginTop="@dimen/normal_100"
+        android:onClick="@{(view) -> category.onItemClicked(view,category.category)}">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_image_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="@id/container_all_categories"
+            app:layout_constraintStart_toStartOf="@id/container_all_categories"
+            app:layout_constraintTop_toTopOf="@id/container_all_categories">
+
+            <ImageView
+                android:id="@+id/iv_category_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:imageResource="@{category.category.image}"
+                tools:src="@drawable/image_mens_category" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tv_category_name_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_100"
+            android:layout_marginBottom="@dimen/small_100"
+            android:fontFamily="@font/montserrat_light"
+            android:gravity="center"
+            android:text="@{category.category.title}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_image_container"
+            tools:text="@string/all_category_title" />
+
+
+        <View
+            android:id="@+id/view_background_item"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/item_category_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

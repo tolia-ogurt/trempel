@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_categories"
+    app:startDestination="@id/categoryFragment">
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.categories.ui.categories.CategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/category_fragment">
+        <action
+            android:id="@+id/action_categoryFragment_to_mensCategoryFragment"
+            app:destination="@id/mensCategoryFragment" />
+    </fragment>
+    <include app:graph="@navigation/nav_graph_pdp" />
+    <fragment
+        android:id="@+id/mensCategoryFragment"
+        android:name="com.example.categories.ui.products_in_category.CategoryProductsFragment"
+        android:label="MensCategoryFragment"
+        tools:layout="@layout/category_products_fragment">
+        <action
+            android:id="@+id/action_mensCategoryFragment_to_pdpFragment"
+            app:destination="@id/nav_graph_pdp">
+            <argument
+                android:name="productId"
+                app:argType="integer" />
+        </action>
+        <argument
+            android:name="category"
+            app:argType="com.example.core_network.CategoryDomainModel" />
+    </fragment>
+
+</navigation>

@@ -43,7 +43,7 @@ internal class MainActivity : AppCompatActivity() {
         val controller = binding.bottomNav.setupWithNavController(
             navGraphIds = listOf(
                 R.navigation.nav_graph_home_page,
-                R.navigation.nav_graph_detail,
+                R.navigation.nav_graph_categories,
                 R.navigation.nav_grpah_bag,
                 R.navigation.nav_graph_favourites,
                 R.navigation.nav_graph_profile
