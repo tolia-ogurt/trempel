@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.login.ui.SignInFragment"
+        android:name="com.trempel.login.ui.SignInFragment"
         android:label="LoginFragment"
         tools:layout="@layout/sign_in_fragment">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="com.example.home_page.ui.HomePageFragment"
+        android:name="com.trempel.home_page.ui.HomePageFragment"
         android:label="HomePageFragment"
         tools:layout="@layout/home_page_fragment" >
         <action

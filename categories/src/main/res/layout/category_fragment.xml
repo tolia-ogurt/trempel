@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.categories.ui.categories.CategoryViewModel" />
+            type="com.trempel.categories.ui.categories.CategoryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

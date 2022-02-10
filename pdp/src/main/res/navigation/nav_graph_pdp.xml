@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/pdpFragment"
-        android:name="com.example.pdp.ui.PdpFragment"
+        android:name="com.trempel.pdp.ui.PdpFragment"
         android:label="PdpFragment"
         tools:layout="@layout/pdp_fragment">
         <argument

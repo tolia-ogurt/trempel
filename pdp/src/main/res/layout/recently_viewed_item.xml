@@ -9,7 +9,7 @@
 
         <variable
             name="recentlyView"
-            type="com.example.pdp.ui.RecentlyViewedItemViewModel" />
+            type="com.trempel.pdp.ui.RecentlyViewedItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

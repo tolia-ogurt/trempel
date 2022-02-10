@@ -6,7 +6,7 @@
 
         <variable
             name="homePage"
-            type="com.example.home_page.ui.HomePageFragment" />
+            type="com.trempel.home_page.ui.HomePageFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
