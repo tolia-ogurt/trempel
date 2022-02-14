@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.trempel.login.ui.SignInViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/trempel_logo"
+            android:layout_width="@dimen/trempel_logo_size"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/large_200"
+            android:background="@drawable/trempel_logo_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/large_250"
+            android:background="@drawable/sign_in_rounded_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/trempel_logo" />
+
+        <TextView
+            android:id="@+id/tv_sign_in_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_150"
+            android:layout_marginTop="@dimen/normal_100"
+            android:fontFamily="@font/montserrat_light"
+            android:onClick="@{()-> viewModel.setLoginDataForDebug()}"
+            android:text="@string/sign_in_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_login"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/large_150"
+            android:layout_marginTop="@dimen/normal_150"
+            android:layout_marginEnd="@dimen/normal_150"
+            android:background="@drawable/item_background"
+            android:hint="@string/text_hint_login"
+            app:hintTextAppearance="@style/MyHintText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_in_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_in_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/text_hint_login"
+                android:inputType="textEmailAddress"
+                android:paddingStart="@dimen/normal_100"
+                android:singleLine="true"
+                android:text="@={viewModel.loginEditTextData}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_hint"
+                android:theme="@style/MyEditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/large_150"
+            android:layout_marginTop="@dimen/normal_150"
+            android:background="@drawable/item_background"
+            android:hint="@string/text_hint_password"
+            app:hintTextAppearance="@style/MyHintText"
+            app:layout_constraintEnd_toEndOf="@id/til_login"
+            app:layout_constraintStart_toStartOf="@id/til_login"
+            app:layout_constraintTop_toBottomOf="@id/til_login">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/text_hint_password"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/normal_100"
+                android:singleLine="true"
+                android:text="@={viewModel.passwordEditTextData}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_hint"
+                android:theme="@style/MyEditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/large_150"
+            android:layout_marginTop="@dimen/large_350"
+            android:layout_marginBottom="@dimen/large_175"
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/montserrat_light"
+            android:onClick="@{()-> viewModel.login()}"
+            android:text="@string/btn_login"
+            android:textSize="@dimen/normal_text_size"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/til_password"
+            app:layout_constraintStart_toStartOf="@id/til_password"
+            app:layout_constraintTop_toBottomOf="@id/til_password" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

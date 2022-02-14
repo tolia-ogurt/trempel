@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    def nav_version = "2.3.5"
+    def retrofit_version = "2.9.0"
+    def dagger_version = "2.35.1"
+    def rxJava2_version ="2.2.12"
+    def rxJavaAdapter_version = "2.9.0"
+    def rxAndroid_version = "2.1.1"
+    def gson_version = "2.5.0"
+
+    implementation project(path: ":core_ui")
+
+    //RxJava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxJava2_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid_version"
+
+    //Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxJavaAdapter_version"
+
+    //Dagger 2
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+}

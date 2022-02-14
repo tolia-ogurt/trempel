@@ -8,3 +8,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Trempel"
 include ':app'
+include ':login'
+include ':pdp'
+include ':core_ui'
+include ':core_network'
+include ':home_page'
+include ':categories'

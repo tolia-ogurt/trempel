@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.trempel.categories.ui.products_in_category.CategoryProductItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginTop="@dimen/small_125"
+        android:layout_marginBottom="@dimen/small_125"
+        android:background="@color/white"
+        android:onClick="@{(view) -> viewModel.onItemClicked(view, viewModel.product.id)}">
+
+        <View
+            android:id="@+id/view_background_item"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/view_height_item"
+            android:background="@drawable/item_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_favorite"
+            android:layout_width="@dimen/small_125"
+            android:layout_height="@dimen/small_125"
+            android:layout_marginTop="@dimen/normal_100"
+            android:layout_marginEnd="@dimen/small_125"
+            android:background="@drawable/favorite_off"
+            app:layout_constraintEnd_toEndOf="@id/view_background_item"
+            app:layout_constraintTop_toTopOf="@id/view_background_item" />
+
+        <ImageView
+            android:id="@+id/iv_category_item"
+            imageUrl="@{viewModel.product.image}"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/image_height_item"
+            android:layout_marginStart="@dimen/normal_100"
+            android:layout_marginTop="@dimen/small_150"
+            android:layout_marginEnd="@dimen/normal_100"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@id/tv_title_item"
+            app:layout_constraintEnd_toEndOf="@id/view_background_item"
+            app:layout_constraintStart_toStartOf="@id/view_background_item"
+            app:layout_constraintTop_toTopOf="@id/view_background_item"
+            tools:src="@drawable/image_product" />
+
+        <TextView
+            android:id="@+id/tv_title_item"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/small_100"
+            android:layout_marginBottom="@dimen/small_100"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_light"
+            android:lineSpacingExtra="@{@dimen/small_100}"
+            android:maxLines="2"
+            android:paddingHorizontal="@dimen/small_150"
+            android:text="@{viewModel.product.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/small_text_size"
+            app:dynamicMaxLines="@{true}"
+            app:layout_constraintBottom_toTopOf="@id/btn_item_add_to_cart"
+            app:layout_constraintEnd_toEndOf="@id/view_background_item"
+            app:layout_constraintStart_toStartOf="@id/view_background_item"
+            app:layout_constraintTop_toBottomOf="@id/iv_category_item"
+            tools:text="@string/product_title" />
+
+        <Button
+            android:id="@+id/btn_item_add_to_cart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/btn_add_to_cart_item"
+            android:drawableEnd="@drawable/ic_bag"
+            android:fontFamily="@font/montserrat_light"
+            android:gravity="center"
+            android:paddingLeft="@dimen/padding_left_btn_item_add_to_cart"
+            android:paddingRight="@dimen/small_175"
+            android:text="@{@string/product_price_format(viewModel.product.price)}"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/view_background_item"
+            app:layout_constraintEnd_toEndOf="@id/view_background_item"
+            app:layout_constraintStart_toStartOf="@id/view_background_item"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_item"
+            tools:text="@string/product_price_format" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
