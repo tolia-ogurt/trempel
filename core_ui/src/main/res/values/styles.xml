@@ -4,17 +4,31 @@
     <style name="Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:fontFamily">@font/montserrat_light</item>
+        <item name="android:lineSpacingExtra">@dimen/small_100</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="navigationIcon">@drawable/btn_back</item>
+        <item name="titleMarginStart">0dp</item>
+        <item name="titleTextColor">@color/black</item>
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:background">@color/white</item>
     </style>
 
     <style name="MyHintText" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/item_background</item>
     </style>
 
     <style name="MyEditText" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/white</item>
+        <item name="android:paddingStart">@dimen/normal_100</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textColorHint">@color/color_hint</item>
     </style>
 
     <style name="BottomNavigation">
@@ -22,4 +36,32 @@
         <item name="itemIconTint">@drawable/bottom_nav_colors</item>
         <item name="labelVisibilityMode">auto</item>
     </style>
+
+    <style name="BaseTextLight">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="lineHeight">@dimen/normal_100</item>
+        <item name="fontFamily">@font/montserrat_black</item>
+    </style>
+
+    <style name="BaseTextDark">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="lineHeight">@dimen/normal_100</item>
+        <item name="fontFamily">@font/montserrat_black</item>
+    </style>
+
+    <style name="BaseBtn" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="lineHeight">@dimen/normal_100</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:background">@drawable/btn_base</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ProgressBar">
+        <item name="android:indeterminateTint">@color/grey</item>
+    </style>
+
 </resources>

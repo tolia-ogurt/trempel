@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyEditText.HomePageEditText">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:drawableStart">@drawable/ic_search</item>
+        <item name="android:drawablePadding">@dimen/small_175</item>
+        <item name="android:paddingStart">@dimen/small_175</item>
+    </style>
+
+    <style name="BaseTextDark.HomePageTitle">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:maxLines">1</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="BaseBtn.HomePageBtn">
+        <item name="android:background">@drawable/item_background</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>

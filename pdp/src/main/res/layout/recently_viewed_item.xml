@@ -48,14 +48,12 @@
 
         <TextView
             android:id="@+id/tv_title_recently_view"
+            style="@style/BaseTextDark.RecentlyViewedTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_100"
             android:layout_marginBottom="@dimen/small_150"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:text="@{recentlyView.product.titleProduct}"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/view_background"
             app:layout_constraintEnd_toStartOf="@id/tv_price_recently_view_item"
             app:layout_constraintStart_toStartOf="@id/iv_recently_view"
@@ -63,11 +61,10 @@
 
         <TextView
             android:id="@+id/tv_price_recently_view_item"
+            style="@style/BaseTextDark.RecentlyViewedPrice"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:maxLines="1"
             android:text="@{@string/product_price_format(recentlyView.product.price)}"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/tv_title_recently_view"
             app:layout_constraintEnd_toEndOf="@id/iv_recently_view"
             app:layout_constraintStart_toEndOf="@id/tv_title_recently_view"
