@@ -11,7 +11,7 @@ internal class CategoryProductItemViewModel(
 ) : ViewModel(), RecyclerItemComparator {
 
     fun onItemClicked(view: View, id: Int) {
-        val action = CategoryProductsFragmentDirections.actionMensCategoryFragmentToPdpFragment(id)
+        val action = CategoryProductsFragmentDirections.actionCategoryProductsToPdpFragment(id)
         view.findNavController().navigate(action)
     }
 

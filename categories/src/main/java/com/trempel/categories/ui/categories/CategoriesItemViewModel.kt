@@ -12,7 +12,7 @@ internal class CategoriesItemViewModel(
 
     fun onItemClicked(view: View, category: CategoryDomainModel) {
         val action =
-            CategoryFragmentDirections.actionCategoryFragmentToMensCategoryFragment(category)
+            CategoryFragmentDirections.actionCategoryFragmentToCategoryProductsFragment(category)
         view.findNavController().navigate(action)
     }
 

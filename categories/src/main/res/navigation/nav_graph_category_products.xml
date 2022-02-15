@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_category_products"
+    app:startDestination="@id/categoryProducts">
+    <fragment
+        android:id="@+id/categoryProducts"
+        android:name="com.trempel.categories.ui.products_in_category.CategoryProductsFragment"
+        android:label="MensCategoryFragment"
+        tools:layout="@layout/category_products_fragment">
+        <argument
+            android:name="category"
+            app:argType="com.trempel.categories.model.CategoryDomainModel" />
+        <action
+            android:id="@+id/action_categoryProducts_to_pdpFragment"
+            app:destination="@id/nav_graph_pdp">
+            <argument
+                android:name="productId"
+                app:argType="integer" />
+        </action>
+    </fragment>
+
+    <include app:graph="@navigation/nav_graph_pdp" />
+
+</navigation>

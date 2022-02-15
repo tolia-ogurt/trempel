@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Toolbar">
+    <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:textSize">@dimen/normal_text_size</item>
@@ -11,12 +11,12 @@
         <item name="navigationIcon">@drawable/btn_back</item>
         <item name="titleMarginStart">0dp</item>
         <item name="titleTextColor">@color/black</item>
-        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:background">@color/white</item>
     </style>
 
-    <style name="HintTextInputLayout" parent="TextAppearance.AppCompat.Small">
+    <style name="HintTextInputLayout" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/black</item>
+        <item name="android:colorAccent">@color/black</item>
         <item name="android:background">@drawable/item_background</item>
     </style>
 
