@@ -6,6 +6,7 @@ import com.trempel.categories.di.CategoryProductsFragmentModule
 import com.trempel.login.di.LoginFragmentModule
 import com.trempel.pdp.di.PdpFragmentModule
 import com.trempel.MyApplication
+import com.trempel.bag.di.BagFragmentModule
 import com.trempel.ui.main_activity.MainActivity
 import dagger.*
 import dagger.android.support.AndroidSupportInjectionModule
@@ -19,7 +20,8 @@ import javax.inject.Singleton
         LoginFragmentModule::class,
         PdpFragmentModule::class,
         CategoryFragmentModule::class,
-        CategoryProductsFragmentModule::class
+        CategoryProductsFragmentModule::class,
+        BagFragmentModule::class
     ]
 )
 internal interface AppComponent {

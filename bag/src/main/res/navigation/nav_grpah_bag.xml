@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/bagFragment"
-        android:name="com.trempel.ui.bag.BagFragment"
+        android:name="com.trempel.bag.ui.BagFragment"
         android:label="BagFragment"
         tools:layout="@layout/bag_fragment"
         />
