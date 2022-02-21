@@ -9,6 +9,14 @@
         android:id="@+id/bagFragment"
         android:name="com.trempel.bag.ui.BagFragment"
         android:label="BagFragment"
-        tools:layout="@layout/bag_fragment"
-        />
+        tools:layout="@layout/bag_fragment">
+        <action
+            android:id="@+id/action_bagFragment_to_nav_graph_pdp"
+            app:destination="@id/nav_graph_pdp" >
+            <argument
+                android:name="productId"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <include app:graph="@navigation/nav_graph_pdp" />
 </navigation>

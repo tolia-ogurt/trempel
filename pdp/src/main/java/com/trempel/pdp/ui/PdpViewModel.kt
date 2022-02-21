@@ -2,23 +2,24 @@ package com.trempel.pdp.ui
 
 import android.util.Log
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.trempel.core_ui.RecyclerItem
 import com.example.pdp.BR
 import com.example.pdp.R
+import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.pdp.model.ProductDomainModel
 import com.trempel.pdp.repo.ProductRepository
 import com.trempel.pdp.repo.RecentlyViewedRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PdpViewModel @Inject constructor(
     private val serviceRepository: ProductRepository,
-    private val roomRepository: RecentlyViewedRepository
+    private val roomRepository: RecentlyViewedRepository,
+    private val bagDbRepository: BagDbRepository
 ) : ViewModel() {
 
     private val _recentlyViewed = MutableLiveData<List<RecyclerItem>>()
@@ -87,4 +88,10 @@ class PdpViewModel @Inject constructor(
         variableId = BR.recentlyView,
         layoutId = R.layout.recently_viewed_item
     )
+
+    fun addProductToBag(){
+        viewModelScope.launch {
+            product.value?.id?.let { bagDbRepository.addProductToBag(it) }
+        }
+    }
 }

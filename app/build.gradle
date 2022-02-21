@@ -43,7 +43,7 @@ dependencies {
     implementation project(path: ":pdp")
     implementation project(path: ":home_page")
     implementation project(path: ":core_ui")
-    implementation project(path: ":core_network")
+    implementation project(path: ':core_data')
     implementation project(path: ":categories")
     implementation project(path: ":bag")
 

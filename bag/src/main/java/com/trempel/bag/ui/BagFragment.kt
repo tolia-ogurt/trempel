@@ -26,12 +26,10 @@ class BagFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return BagFragmentBinding.inflate(layoutInflater).apply {
-            this.lifecycleOwner = this@BagFragment
             this.viewModel = this@BagFragment.viewModel
+            this.lifecycleOwner = this@BagFragment
         }.also {
-            viewModel.loadData()
+            this.viewLifecycleOwner.lifecycle.addObserver(viewModel)
         }.root
     }
-
-
 }

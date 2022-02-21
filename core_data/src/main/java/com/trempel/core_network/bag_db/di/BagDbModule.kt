@@ -1,16 +1,14 @@
-package com.trempel.bag.di
+package com.trempel.core_network.bag_db.di
 
 import android.content.Context
 import androidx.room.Room
 import com.trempel.core_network.bag_db.db.AppDataBase
-import com.trempel.bag.service.BagService
 import dagger.Module
 import dagger.Provides
-import retrofit2.Retrofit
 
 
 @Module
-class BagNetworkModule {
+class BagDbModule {
 
     @Provides
     fun provideRoomBagDataBase(context: Context) = Room.databaseBuilder(
@@ -18,14 +16,8 @@ class BagNetworkModule {
         AppDataBase::class.java, TABLE_NAME_DB
     ).build()
 
-
     @Provides
     fun provideBagDao(db: AppDataBase) = db.getBagDao()
-
-    @Provides
-    fun provideBagService(retrofit: Retrofit): BagService {
-        return retrofit.create(BagService::class.java)
-    }
 
     companion object {
 

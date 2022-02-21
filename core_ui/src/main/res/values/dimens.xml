@@ -49,4 +49,6 @@
 
     <dimen name="width_item_recently_viewed">150dp</dimen>
     <dimen name="height_item_recently_viewed">220dp</dimen>
+
+    <dimen name="height_item_bag">108dp</dimen>
 </resources>

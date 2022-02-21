@@ -8,7 +8,7 @@ import dagger.android.AndroidInjector
 import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 
-@Subcomponent(modules = [BagDataModule::class])
+@Subcomponent
 interface BagComponent : AndroidInjector<BagFragment> {
 
     @Subcomponent.Factory

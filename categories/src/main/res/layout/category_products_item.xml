@@ -77,6 +77,7 @@
             style="@style/BaseBtn.CategoriesProductsItemBtnAddToCart"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="@{() -> viewModel.addProductToBag()}"
             android:paddingLeft="@dimen/normal_100"
             android:paddingRight="@dimen/normal_100"
             android:text="@{@string/product_price_format(viewModel.product.price)}"

@@ -135,6 +135,7 @@
             android:layout_marginEnd="@dimen/normal_150"
             android:layout_marginBottom="@dimen/normal_150"
             android:text="@string/btn_add_to_cart"
+            android:onClick="@{() -> viewModel.addProductToBag()}"
             app:layout_constraintBottom_toBottomOf="@id/view"
             app:layout_constraintEnd_toEndOf="@id/view"
             app:layout_constraintStart_toStartOf="@id/view" />
