@@ -20,8 +20,6 @@ internal class MainActivity : BaseActivity() {
 
     private var currentNavController: LiveData<NavController>? = null
 
-    lateinit var navController: NavController
-
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -29,17 +27,21 @@ internal class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-        binding.backPressedListener()
         setContentView(binding.root)
-        setUpBottomNav()
+        configureLayout()
         firstSignIn()
-        setNavigationIcon()
     }
 
     private fun firstSignIn() {
         if (!viewModel.isLoggedIn) {
             currentNavController?.value?.navigate(R.id.loginFragment)
         }
+    }
+
+    private fun configureLayout(){
+        setUpBottomNav()
+        setNavigationIcon()
+        setBackPressedListener()
     }
 
     private fun setUpBottomNav() {
@@ -75,8 +77,8 @@ internal class MainActivity : BaseActivity() {
         return currentNavController?.value?.navigateUp() ?: false
     }
 
-    private fun ActivityMainBinding.backPressedListener() {
-        this.toolbar.setNavigationOnClickListener {
+    private fun setBackPressedListener() {
+        binding.toolbar.setNavigationOnClickListener {
             currentNavController?.value?.popBackStack()
         }
     }
