@@ -36,12 +36,11 @@ fun TextView.setBoldPart(textPart: Float) {
     this.setBoldPart(textPart.toString())
 }
 
-@BindingAdapter("app:dynamicMaxLines", "android:lineSpacingExtra")
-fun TextView.setMaxLines(dynamic: Boolean, extraSpacing: Float) {
-    setLineSpacing(extraSpacing, 1f)
+@BindingAdapter("app:dynamicMaxLines")
+fun TextView.setMaxLines(dynamic: Boolean) {
     if (!dynamic) return
     addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
-        maxLines = (measuredHeight / (textSize + extraSpacing)).toInt()
+        maxLines = (measuredHeight / (textSize + lineSpacingExtra)).toInt()
     }
 }
 

@@ -87,8 +87,6 @@
             style="@style/BaseTextLight.PdpDescription"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:justificationMode="inter_word"
-            android:lineSpacingExtra="@{@dimen/small_100}"
             android:text="@{viewModel.product.description}"
             app:dynamicMaxLines="@{true}"
             tools:text="@string/product_description" />
@@ -110,8 +108,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/normal_150"
                     android:layout_marginEnd="@dimen/normal_150"
-                    android:justificationMode="inter_word"
-                    android:lineSpacingExtra="@dimen/small_100"
                     android:text="@{viewModel.product.description}"
                     tools:text="@string/product_description" />
 

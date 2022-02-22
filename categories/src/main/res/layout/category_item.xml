@@ -48,7 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_100"
             android:layout_marginBottom="@dimen/small_100"
-            android:fontFamily="@font/montserrat_light"
             android:text="@{category.category.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

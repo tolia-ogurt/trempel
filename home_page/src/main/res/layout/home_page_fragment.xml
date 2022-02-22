@@ -16,21 +16,21 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_search"
+            style="@style/HintTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="@dimen/large_150"
             android:layout_marginTop="@dimen/normal_150"
             android:hint="@string/text_hint_search"
-            style="@style/MyHintText"
             app:layout_constraintEnd_toEndOf="@id/margin_end"
             app:layout_constraintStart_toStartOf="@id/margin_start"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_search"
+                style="@style/TextInputEditText.HomePageEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/edit_text_hint_search"
-                style="@style/MyEditText.HomePageEditText"
                 app:layout_constraintBottom_toBottomOf="@id/til_search"
                 app:layout_constraintEnd_toEndOf="@id/til_search"
                 app:layout_constraintStart_toStartOf="@id/til_search"
@@ -116,11 +116,11 @@
 
         <TextView
             android:id="@+id/tv_home_page"
+            style="@style/BaseTextDark.HomePageTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_125"
             android:text="@string/text_home_page"
-            style="@style/BaseTextDark.HomePageTitle"
             app:layout_constraintEnd_toStartOf="@+id/iv_top_right_2"
             app:layout_constraintStart_toStartOf="@id/margin_start"
             app:layout_constraintTop_toBottomOf="@id/iv_top_left" />

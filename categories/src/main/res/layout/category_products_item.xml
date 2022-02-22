@@ -57,12 +57,11 @@
 
         <TextView
             android:id="@+id/tv_title_item"
-            style="@style/BaseTextDark.CategoriesProductsItem"
+            style="@style/BaseTextDark.CategoriesProductsItemTitle"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/small_100"
             android:layout_marginBottom="@dimen/small_100"
-            android:lineSpacingExtra="@{@dimen/small_100}"
             android:paddingHorizontal="@dimen/small_150"
             android:text="@{viewModel.product.title}"
             android:textColor="@color/black"
@@ -75,7 +74,7 @@
 
         <Button
             android:id="@+id/btn_item_add_to_cart"
-            style="@style/BaseBtn.CategoriesProductsItem"
+            style="@style/BaseBtn.CategoriesProductsItemBtnAddToCart"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:paddingLeft="@dimen/normal_100"
