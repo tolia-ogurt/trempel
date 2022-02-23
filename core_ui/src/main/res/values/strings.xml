@@ -17,6 +17,8 @@
     <string name="text_hint_search">Search</string>
     <string name="text_home_page">Ready for the shopping?</string>
     <string name="text_btn_home_page">Visit our Categories</string>
+    <string name="toast_text_search">You must enter the word</string>
+    <string name="text_no_result">No matching results</string>
     <string name="checkout">Checkout</string>
     <string name="total_product_format">Total: %3d items</string>
 </resources>

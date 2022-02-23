@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_homeCategoryFragment"
             app:destination="@id/homeCategoryFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
 
     <fragment
@@ -39,4 +42,23 @@
         </action>
     </fragment>
     <include app:graph="@navigation/nav_graph_category_products" />
+    <include app:graph="@navigation/nav_graph_categories" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.trempel.home_page.ui.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/search_result_fragment">
+        <action
+            android:id="@+id/action_searchFragment_to_nav_graph_pdp"
+            app:destination="@id/nav_graph_pdp">
+
+            <argument
+                android:name="productId"
+                app:argType="integer" />
+        </action>
+        <argument
+            android:name="keyWord"
+            app:argType="string" />
+    </fragment>
+    <include app:graph="@navigation/nav_graph_pdp" />
 </navigation>

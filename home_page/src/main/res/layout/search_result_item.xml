@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.trempel.categories.ui.products_in_category.CategoryProductItemViewModel" />
+            name="searchResultItem"
+            type="com.trempel.home_page.ui.SearchItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         android:layout_marginTop="@dimen/small_125"
         android:layout_marginBottom="@dimen/small_125"
         android:background="@color/white"
-        android:onClick="@{(view) -> viewModel.onItemClicked(view, viewModel.product.id)}">
+        android:onClick="@{(view) -> searchResultItem.onItemClicked(view, searchResultItem.product.id)}">
 
         <View
             android:id="@+id/view_background_item"
@@ -42,7 +42,7 @@
 
         <ImageView
             android:id="@+id/iv_category_item"
-            imageUrl="@{viewModel.product.image}"
+            imageUrl="@{searchResultItem.product.image}"
             android:layout_width="0dp"
             android:layout_height="@dimen/image_height_item"
             android:layout_marginStart="@dimen/normal_100"
@@ -57,14 +57,18 @@
 
         <TextView
             android:id="@+id/tv_title_item"
-            style="@style/BaseTextDark.CategoriesProductsItemTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_100"
             android:layout_marginBottom="@dimen/small_100"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_light"
+            android:lineSpacingExtra="@{@dimen/small_100}"
+            android:maxLines="2"
             android:paddingHorizontal="@dimen/small_150"
-            android:text="@{viewModel.product.title}"
+            android:text="@{searchResultItem.product.title}"
             android:textColor="@color/black"
+            android:textSize="@dimen/small_text_size"
             app:dynamicMaxLines="@{true}"
             app:layout_constraintBottom_toTopOf="@id/btn_item_add_to_cart"
             app:layout_constraintEnd_toEndOf="@id/view_background_item"
@@ -74,13 +78,16 @@
 
         <Button
             android:id="@+id/btn_item_add_to_cart"
-            style="@style/BaseBtn.CategoriesProductsItemBtnAddToCart"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:onClick="@{() -> viewModel.addProductToBag()}"
-            android:paddingLeft="@dimen/normal_100"
-            android:paddingRight="@dimen/normal_100"
-            android:text="@{@string/product_price_format(viewModel.product.price)}"
+            android:background="@drawable/btn_add_to_cart_item"
+            android:drawableEnd="@drawable/ic_bag"
+            android:fontFamily="@font/montserrat_light"
+            android:gravity="center"
+            android:paddingLeft="@dimen/padding_left_btn_item_add_to_cart"
+            android:paddingRight="@dimen/small_175"
+            android:text="@{@string/product_price_format(searchResultItem.product.price)}"
+            android:textSize="@dimen/small_text_size"
             app:layout_constraintBottom_toBottomOf="@id/view_background_item"
             app:layout_constraintEnd_toEndOf="@id/view_background_item"
             app:layout_constraintStart_toStartOf="@id/view_background_item"

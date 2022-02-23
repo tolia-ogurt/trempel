@@ -1,4 +1,4 @@
-package com.example.trempel
+package com.trempel.core_ui
 
 import android.graphics.Typeface
 import android.text.Spannable
