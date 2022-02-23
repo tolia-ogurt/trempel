@@ -16,29 +16,21 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_search"
+            style="@style/HintTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="@dimen/large_150"
             android:layout_marginTop="@dimen/normal_150"
-            android:background="@drawable/background_search"
             android:hint="@string/text_hint_search"
-            app:hintTextAppearance="@style/MyHintText"
             app:layout_constraintEnd_toEndOf="@id/margin_end"
             app:layout_constraintStart_toStartOf="@id/margin_start"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_search"
+                style="@style/TextInputEditText.HomePageEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:drawableStart="@drawable/ic_search"
-                android:drawablePadding="@dimen/small_175"
                 android:hint="@string/edit_text_hint_search"
-                android:paddingStart="@dimen/small_175"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/color_hint"
-                android:theme="@style/MyEditText"
                 app:layout_constraintBottom_toBottomOf="@id/til_search"
                 app:layout_constraintEnd_toEndOf="@id/til_search"
                 app:layout_constraintStart_toStartOf="@id/til_search"
@@ -124,23 +116,22 @@
 
         <TextView
             android:id="@+id/tv_home_page"
-            android:layout_width="wrap_content"
+            style="@style/BaseTextDark.HomePageTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_125"
             android:text="@string/text_home_page"
-            android:textColor="@color/black"
-            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/iv_top_right_2"
             app:layout_constraintStart_toStartOf="@id/margin_start"
             app:layout_constraintTop_toBottomOf="@id/iv_top_left" />
 
         <Button
             android:id="@+id/btn_to_categories"
+            style="@style/BaseBtn.HomePageBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_100"
-            android:background="@drawable/item_background"
             android:text="@string/text_btn_home_page"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/margin_end"
             app:layout_constraintStart_toStartOf="@id/margin_start"
             app:layout_constraintTop_toBottomOf="@id/tv_home_page" />

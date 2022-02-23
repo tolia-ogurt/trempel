@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseTextLight.PdpTitle">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
+
+    <style name="BaseTextLight.PdpPrice">
+        <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="fontFamily">@font/montserrat_light</item>
+    </style>
+
+    <style name="BaseTextLight.PdpScore">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="lineHeight">@dimen/small_150</item>
+    </style>
+
+    <style name="BaseTextLight.PdpDescription">
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">@dimen/small_100</item>
+    </style>
+
+    <style name="BaseTextDark.RecentlyViewedTitle">
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BaseTextDark.RecentlyViewedPrice">
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BaseBtn.PdpAddToCart">
+        <item name="android:background">@drawable/btn_add</item>
+    </style>
+
+
+</resources>

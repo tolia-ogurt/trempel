@@ -43,14 +43,12 @@
 
         <TextView
             android:id="@+id/tv_category_name_item"
+            style="@style/BaseTextDark.CategoriesItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_100"
             android:layout_marginBottom="@dimen/small_100"
-            android:fontFamily="@font/montserrat_light"
-            android:gravity="center"
             android:text="@{category.category.title}"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

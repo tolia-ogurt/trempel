@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseTextLight.PdpDescription">
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:justificationMode">inter_word</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+</resources>
