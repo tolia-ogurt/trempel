@@ -10,5 +10,4 @@ import androidx.room.RoomDatabase
 internal abstract class AppDataBase : RoomDatabase() {
 
     abstract fun getRecentlyViewedDao(): RecentlyViewedDao
-
 }

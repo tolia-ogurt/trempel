@@ -1,8 +1,8 @@
 package com.trempel.pdp.repo
 
-import com.trempel.pdp.service.ProductService
-import com.trempel.pdp.model.toDomainModel
 import com.trempel.pdp.model.ProductDomainModel
+import com.trempel.pdp.model.toDomainModel
+import com.trempel.pdp.service.ProductService
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

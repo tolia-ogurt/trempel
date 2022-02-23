@@ -39,16 +39,22 @@ class SignInFragment : BaseFragment() {
     }
 
     private fun observeSuccessLogin() {
-        viewModel.successLiveData.observe(this.viewLifecycleOwner, {
-            findNavController().popBackStack()
-        })
+        viewModel.successLiveData.observe(
+            this.viewLifecycleOwner,
+            {
+                findNavController().popBackStack()
+            }
+        )
     }
 
     private fun observeExceptionResponse() {
-        viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            ExceptionDialog(it)
-                .apply { retryCall = viewModel::login }
-                .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
-        })
+        viewModel.errorLiveData.observe(
+            this.viewLifecycleOwner,
+            {
+                ExceptionDialog(it)
+                    .apply { retryCall = viewModel::login }
+                    .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
+            }
+        )
     }
 }

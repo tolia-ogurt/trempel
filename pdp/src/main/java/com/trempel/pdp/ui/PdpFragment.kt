@@ -42,10 +42,13 @@ class PdpFragment : BaseFragment() {
     }
 
     private fun observeExceptionResponse() {
-        viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            ExceptionDialog(it)
-                .apply { retryCall = { viewModel.loadProduct(args.productId) } }
-                .show(childFragmentManager, SERVICE_EXCEPTION_DIALOG)
-        })
+        viewModel.errorLiveData.observe(
+            this.viewLifecycleOwner,
+            {
+                ExceptionDialog(it)
+                    .apply { retryCall = { viewModel.loadProduct(args.productId) } }
+                    .show(childFragmentManager, SERVICE_EXCEPTION_DIALOG)
+            }
+        )
     }
 }

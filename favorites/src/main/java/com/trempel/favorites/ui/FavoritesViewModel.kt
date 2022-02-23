@@ -1,6 +1,12 @@
 package com.trempel.favorites.ui
 
-import androidx.lifecycle.*
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.favorites.BR
 import com.example.favorites.R
 import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
@@ -55,8 +61,10 @@ class FavoritesViewModel @Inject constructor(
         super.onPause(owner)
         viewModelScope.launch {
             _favoritesItems.value?.let { bagItems ->
-                favoritesDbRepository.updateQuantity(*bagItems.map { it.data as FavoriteItemViewModel }
-                    .map { it.item.toFavoritesEntity(it.quantity.value ?: 0) }.toTypedArray())
+                favoritesDbRepository.updateQuantity(
+                    *bagItems.map { it.data as FavoriteItemViewModel }
+                        .map { it.item.toFavoritesEntity(it.quantity.value ?: 0) }.toTypedArray()
+                )
             }
         }
     }

@@ -11,8 +11,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.home_page.R
 import com.example.home_page.databinding.HomePageFragmentBinding
-import dagger.android.support.AndroidSupportInjection
 import com.trempel.core_ui.BaseFragment
+import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 class HomePageFragment : BaseFragment() {

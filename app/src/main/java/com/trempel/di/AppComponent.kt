@@ -1,19 +1,20 @@
 package com.trempel.di
 
 import android.content.Context
-import com.trempel.categories.di.CategoryFragmentModule
-import com.trempel.categories.di.CategoryProductsFragmentModule
-import com.trempel.login.di.LoginFragmentModule
-import com.trempel.pdp.di.PdpFragmentModule
 import com.trempel.MyApplication
 import com.trempel.bag.di.BagDataModule
 import com.trempel.bag.di.BagFragmentModule
+import com.trempel.categories.di.CategoryFragmentModule
+import com.trempel.categories.di.CategoryProductsFragmentModule
 import com.trempel.favorites.di.FavoritesDataModule
 import com.trempel.favorites.di.FavoritesFragmentModule
 import com.trempel.home_page.di.HomePageFragmentModule
 import com.trempel.home_page.di.SearchFragmentModule
+import com.trempel.login.di.LoginFragmentModule
+import com.trempel.pdp.di.PdpFragmentModule
 import com.trempel.ui.main_activity.MainActivity
-import dagger.*
+import dagger.BindsInstance
+import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
@@ -44,4 +45,3 @@ internal interface AppComponent {
     fun inject(application: MyApplication)
     fun inject(mainActivity: MainActivity)
 }
-

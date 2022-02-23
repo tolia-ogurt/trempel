@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.trempel.core_ui.SingleLiveEvent
-import com.trempel.core_ui.exceptions.TrempelException
 import javax.inject.Inject
 
 class HomePageViewModel @Inject constructor() : ViewModel() {

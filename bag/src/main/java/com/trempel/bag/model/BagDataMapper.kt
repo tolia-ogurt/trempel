@@ -1,7 +1,7 @@
 package com.trempel.bag.model
 
-import com.trempel.core_network.bag_db.db.BagEntity
 import com.trempel.core_network.ProductModel
+import com.trempel.core_network.bag_db.db.BagEntity
 
 fun ProductModel.toBagDomainModel(productQuantity: Int): BagDomainModel {
     return BagDomainModel(

@@ -1,8 +1,10 @@
 package com.trempel.core_network.bag_db.db
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.OnConflictStrategy.ABORT
-import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface BagDao {

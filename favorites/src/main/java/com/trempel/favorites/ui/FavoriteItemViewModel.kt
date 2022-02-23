@@ -4,8 +4,8 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
-import com.trempel.favorites.model.FavoritesDomainModel
 import com.trempel.core_ui.RecyclerItemComparator
+import com.trempel.favorites.model.FavoritesDomainModel
 
 class FavoriteItemViewModel(
     val item: FavoritesDomainModel
