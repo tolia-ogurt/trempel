@@ -20,10 +20,23 @@
         android:id="@+id/homePageFragment"
         android:name="com.trempel.home_page.ui.HomePageFragment"
         android:label="HomePageFragment"
-        tools:layout="@layout/home_page_fragment" >
+        tools:layout="@layout/home_page_fragment">
         <action
-            android:id="@+id/action_homePageFragment_to_nav_graph_categories"
-            app:destination="@id/nav_graph_categories" />
+            android:id="@+id/action_homePageFragment_to_homeCategoryFragment"
+            app:destination="@id/homeCategoryFragment" />
     </fragment>
-    <include app:graph="@navigation/nav_graph_categories"/>
+
+    <fragment
+        android:id="@+id/homeCategoryFragment"
+        android:name="com.trempel.categories.ui.categories.CategoryFragment"
+        tools:layout="@layout/category_fragment">
+        <action
+            android:id="@+id/action_categoryFragment_to_categoryProductsFragment"
+            app:destination="@id/nav_graph_category_products">
+            <argument
+                android:name="category"
+                app:argType="com.trempel.categories.model.CategoryDomainModel" />
+        </action>
+    </fragment>
+    <include app:graph="@navigation/nav_graph_category_products" />
 </navigation>

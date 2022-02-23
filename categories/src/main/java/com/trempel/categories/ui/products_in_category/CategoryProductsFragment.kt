@@ -4,18 +4,19 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.categories.databinding.CategoryProductsFragmentBinding
+import com.trempel.core_ui.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class CategoryProductsFragment : Fragment() {
+class CategoryProductsFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: CategoryProductsViewModel
     private val args: CategoryProductsFragmentArgs by navArgs()
+    override val isToolbarVisible: Boolean = true
+    override val title: String by lazy { args.category.title.replaceFirstChar { it.uppercase() } }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -33,7 +34,6 @@ class CategoryProductsFragment : Fragment() {
         }.also {
             observeExceptionResponse()
             viewModel.loadProduct(args.category)
-            it.navigateWithToolbar()
         }.root
     }
 
@@ -41,12 +41,5 @@ class CategoryProductsFragment : Fragment() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
             Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
         })
-    }
-
-    private fun CategoryProductsFragmentBinding.navigateWithToolbar() {
-        this.toolbar.title = args.category.title.replaceFirstChar { it.uppercase() }
-        this.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
     }
 }

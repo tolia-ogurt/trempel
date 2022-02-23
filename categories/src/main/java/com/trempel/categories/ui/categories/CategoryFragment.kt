@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import com.example.categories.R
 import com.example.categories.databinding.CategoryFragmentBinding
+import com.trempel.core_ui.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class CategoryFragment : Fragment() {
+class CategoryFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: CategoryViewModel
+    override val isToolbarVisible: Boolean = true
+    override val title: String by lazy { getText(R.string.all_category_title).toString() }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -31,7 +33,6 @@ class CategoryFragment : Fragment() {
             this.lifecycleOwner = this@CategoryFragment
             this.viewModel = this@CategoryFragment.viewModel
         }.also {
-            it.navigateWithToolbar()
             observeExceptionResponse()
             viewModel.loadProduct()
         }.root
@@ -41,11 +42,5 @@ class CategoryFragment : Fragment() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
             Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
         })
-    }
-
-    private fun CategoryFragmentBinding.navigateWithToolbar() {
-        this.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
     }
 }

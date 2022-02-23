@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.login.databinding.SignInFragmentBinding
+import com.trempel.core_ui.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class SignInFragment : Fragment() {
+class SignInFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: SignInViewModel
+    override val isToolbarVisible: Boolean = false
+    override val isBottomNavVisible: Boolean = false
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -48,6 +50,4 @@ class SignInFragment : Fragment() {
                 .show()
         })
     }
-
-
 }
