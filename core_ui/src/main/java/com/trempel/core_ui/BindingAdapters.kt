@@ -60,13 +60,12 @@ internal fun setRecyclerViewItems(recyclerView: RecyclerView, items: List<Recycl
     adapter.submitList(items.orEmpty())
 }
 
-
-@BindingAdapter("app:activeBtn")
-fun View.activeBtn(quantity: Int) {
+@BindingAdapter("app:minValueActiveBtn")
+fun View.minValueActiveBtn(quantity: Int) {
     this.isEnabled = quantity > 1
 }
 
 @BindingAdapter("swipe")
-fun View.swipe(isSwipe:Boolean) {
-    setOnTouchListener(SwipeItemForDelete())
+fun View.swipe(isSwipe: Boolean) {
+    if (isSwipe) setOnTouchListener(SwipeItemForDelete())
 }

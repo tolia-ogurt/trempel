@@ -52,7 +52,7 @@ dependencies {
     def roomVersion = "2.4.0"
 
     implementation project(path: ":core_ui")
-    implementation project(path: ':core_data')
+    implementation project(path: ":core_data")
 
     //RxJava2
     implementation "io.reactivex.rxjava2:rxjava:$rxJava2_version"

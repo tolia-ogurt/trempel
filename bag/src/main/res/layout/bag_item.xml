@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="item"
             type="com.trempel.bag.ui.BagItemViewModel" />
@@ -19,7 +17,7 @@
         <ImageButton
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_item_bag"
+            android:layout_height="@dimen/height_item_in_bag"
             android:layout_marginTop="@dimen/small_125"
             android:layout_marginEnd="@dimen/normal_100"
             android:layout_marginBottom="@dimen/small_125"
@@ -32,7 +30,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             swipe="@{true}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_item_bag"
+            android:layout_height="@dimen/height_item_in_bag"
             android:layout_marginStart="@dimen/normal_100"
             android:layout_marginTop="@dimen/small_125"
             android:layout_marginEnd="@dimen/normal_100"
@@ -44,7 +42,7 @@
             <View
                 android:id="@+id/view_background"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/height_item_bag"
+                android:layout_height="@dimen/height_item_in_bag"
                 android:background="@drawable/item_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +100,7 @@
                 android:layout_height="@dimen/normal_100"
                 android:layout_marginEnd="@dimen/small_125"
                 android:layout_marginBottom="@dimen/small_125"
-                android:onClick="@{() -> item.increaseQuantityItem()}"
+                android:onClick="@{() -> item.increaseItemQuantity()}"
                 android:src="@drawable/ic_add"
                 app:layout_constraintBottom_toBottomOf="@id/view_background"
                 app:layout_constraintEnd_toEndOf="@id/view_background" />
@@ -127,12 +125,12 @@
                 android:layout_width="@dimen/normal_100"
                 android:layout_height="@dimen/normal_100"
                 android:layout_marginEnd="@dimen/small_175"
-                android:onClick="@{() -> item.reduceQuantityItem()}"
+                android:onClick="@{() -> item.reduceItemQuantity()}"
                 android:src="@drawable/ic_remove"
-                app:activeBtn="@{item.quantity}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_add_product"
                 app:layout_constraintEnd_toStartOf="@id/tv_quantity_products"
-                app:layout_constraintTop_toTopOf="@id/iv_add_product" />
+                app:layout_constraintTop_toTopOf="@id/iv_add_product"
+                app:minValueActiveBtn="@{item.quantity}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

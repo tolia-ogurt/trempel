@@ -28,14 +28,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:reverseLayout="false"
             tools:itemCount="2"
             tools:listitem="@layout/bag_item" />
 
         <View
             android:id="@+id/view_total_products"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/normal_200"
             android:layout_marginStart="@dimen/normal_100"
             android:layout_marginEnd="@dimen/normal_100"
             android:layout_marginBottom="@dimen/small_125"

@@ -12,7 +12,7 @@ class BagDbRepositoryImpl @Inject constructor(
             bagDao.addProductToBag(
                 BagEntity(
                     productId = productId,
-                    quantity = 1,
+                    quantity = START_ITEM_QUANTITY,
                     createdAt = System.currentTimeMillis()
                 )
             )
@@ -31,5 +31,9 @@ class BagDbRepositoryImpl @Inject constructor(
 
     override suspend fun updateQuantity(vararg bagEntity: BagEntity) {
         bagDao.updateQuantity(*bagEntity)
+    }
+
+    companion object {
+        const val START_ITEM_QUANTITY = 1
     }
 }

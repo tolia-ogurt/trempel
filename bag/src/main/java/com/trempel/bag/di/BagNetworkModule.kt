@@ -8,7 +8,6 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 
-
 @Module
 class BagNetworkModule {
 
@@ -17,7 +16,6 @@ class BagNetworkModule {
         context,
         AppDataBase::class.java, TABLE_NAME_DB
     ).build()
-
 
     @Provides
     fun provideBagDao(db: AppDataBase) = db.getBagDao()
@@ -28,7 +26,6 @@ class BagNetworkModule {
     }
 
     companion object {
-
         const val TABLE_NAME_DB = "bag"
     }
 }

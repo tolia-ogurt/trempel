@@ -89,7 +89,7 @@ class PdpViewModel @Inject constructor(
         layoutId = R.layout.recently_viewed_item
     )
 
-    fun addProductToBag(){
+    fun addProductToBag() {
         viewModelScope.launch {
             product.value?.id?.let { bagDbRepository.addProductToBag(it) }
         }

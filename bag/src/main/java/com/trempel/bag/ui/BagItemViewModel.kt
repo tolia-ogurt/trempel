@@ -3,14 +3,13 @@ package com.trempel.bag.ui
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import com.trempel.bag.model.BagDomainModel
 import com.trempel.core_ui.RecyclerItemComparator
 
-class BagItemViewModel(
+internal class BagItemViewModel(
     val item: BagDomainModel
-) : ViewModel(), RecyclerItemComparator {
+) : RecyclerItemComparator {
 
     private val _quantity = MutableLiveData(item.quantity)
     val quantity: LiveData<Int> get() = _quantity
@@ -25,13 +24,12 @@ class BagItemViewModel(
         deleteLiveData.value = item.id
     }
 
-    fun increaseQuantityItem() {
+    fun increaseItemQuantity() {
         _quantity.value = _quantity.value?.plus(1)
     }
 
-    fun reduceQuantityItem() {
-        if (quantity.value ?: 0 > 1)
-            _quantity.value = _quantity.value?.minus(1)
+    fun reduceItemQuantity() {
+        if (quantity.value ?: 0 > 1) _quantity.value = _quantity.value?.minus(1)
     }
 
     override fun isSameItem(other: Any): Boolean {

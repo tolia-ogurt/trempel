@@ -37,7 +37,7 @@ class CategoryProductsViewModel @Inject constructor(
                 isInProgressTemp.set(false)
             }
             .subscribe({ response ->
-                _items.value = response.map { CategoryProductItemViewModel(it,bagDbRepository) }
+                _items.value = response.map { CategoryProductItemViewModel(it, bagDbRepository) }
                     .map { it.toRecyclerItem() }
             }, { error ->
                 _errorLiveData.value = error.message

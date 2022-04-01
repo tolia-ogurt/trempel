@@ -6,7 +6,6 @@ import com.trempel.core_network.bag_db.db.AppDataBase
 import dagger.Module
 import dagger.Provides
 
-
 @Module
 class BagDbModule {
 
@@ -20,7 +19,6 @@ class BagDbModule {
     fun provideBagDao(db: AppDataBase) = db.getBagDao()
 
     companion object {
-
         const val TABLE_NAME_DB = "bag"
     }
 }
