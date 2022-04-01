@@ -31,6 +31,7 @@
     <dimen name="small_text_size">16sp</dimen>
     <dimen name="normal_text_size">18sp</dimen>
     <dimen name="large_text_size">24sp</dimen>
+    <dimen name="no_matching_results_text_size">30sp</dimen>
 
     <dimen name="image_size_category">107dp</dimen>
     <dimen name="image_width_item">94dp</dimen>

@@ -5,23 +5,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.home_page.databinding.SearchResultFragmentBinding
+import com.trempel.core_ui.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: SearchViewModel
-    val args: SearchFragmentArgs by navArgs()
+    private val args: SearchFragmentArgs by navArgs()
+    override val isToolbarVisible: Boolean = true
+    override val title: String by lazy { args.keyWord.replaceFirstChar { it.uppercase() } }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AndroidSupportInjection.inject(this)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

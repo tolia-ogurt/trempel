@@ -21,10 +21,6 @@ class SearchViewModel @Inject constructor(
         it.isEmpty()
     }
 
-    init {
-        Log.d(SearchViewModel::class.simpleName, "Hiiiiiii, init called!")
-    }
-
     fun loadSearchResult(keyWord: String) {
         viewModelScope.launch {
             _items.postValue(

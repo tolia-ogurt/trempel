@@ -46,7 +46,7 @@ dependencies {
     def dagger_version = "2.35.1"
 
     implementation project(path: ":core_ui")
-    implementation project(path: ":core_network")
+    implementation project(path: ":core_data")
     implementation project(path: ":categories")
     implementation project(path: ":login")
     implementation project(path: ":pdp")

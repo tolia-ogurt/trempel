@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.home_page.R
@@ -16,9 +17,10 @@ import dagger.android.support.AndroidSupportInjection
 import com.trempel.core_ui.BaseFragment
 import javax.inject.Inject
 
-internal class HomePageFragment : BaseFragment() {
+class HomePageFragment : BaseFragment() {
 
     override val isToolbarVisible: Boolean = false
+
     @Inject
     lateinit var viewModel: HomePageViewModel
 
@@ -45,12 +47,12 @@ internal class HomePageFragment : BaseFragment() {
 
     private fun HomePageFragmentBinding.setOnClickListenerHomeBtn() {
         btnToCategories.setOnClickListener {
-            findNavController().navigate(R.id.action_homePageFragment_to_homeCategoryFragment)
+            findNavController().navigate(R.id.action_homePageFragment_to_nav_graph_categories)
         }
     }
 
     private fun HomePageFragmentBinding.setEditorActionListener() {
-        this.etSearch.setOnEditorActionListener { v, actionId, event ->
+        this.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel?.submitText()
                 true
@@ -61,7 +63,7 @@ internal class HomePageFragment : BaseFragment() {
     }
 
     private fun observeSearch() {
-        viewModel.onSearch.observe(this.viewLifecycleOwner) {
+        viewModel.submitOnSearch.ignoreFirst().observe(this.viewLifecycleOwner) {
             val action = HomePageFragmentDirections.actionHomePageFragmentToSearchFragment(it)
             view?.findNavController()?.navigate(action)
         }
@@ -77,5 +79,13 @@ internal class HomePageFragment : BaseFragment() {
         }
     }
 
-
+    private fun <T> LiveData<T>.ignoreFirst(): LiveData<T> {
+        val result = MediatorLiveData<T>()
+        var isFirst = true
+        result.addSource(this) {
+            if (isFirst) isFirst = false
+            else result.value = it
+        }
+        return result
+    }
 }

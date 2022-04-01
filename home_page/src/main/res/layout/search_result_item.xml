@@ -84,14 +84,16 @@
             android:drawableEnd="@drawable/ic_bag"
             android:fontFamily="@font/montserrat_light"
             android:gravity="center"
-            android:paddingLeft="@dimen/padding_left_btn_item_add_to_cart"
+            android:paddingLeft="@dimen/normal_150"
             android:paddingRight="@dimen/small_175"
+            android:textColor="@color/white"
             android:text="@{@string/product_price_format(searchResultItem.product.price)}"
             android:textSize="@dimen/small_text_size"
             app:layout_constraintBottom_toBottomOf="@id/view_background_item"
             app:layout_constraintEnd_toEndOf="@id/view_background_item"
             app:layout_constraintStart_toStartOf="@id/view_background_item"
             app:layout_constraintTop_toBottomOf="@id/tv_title_item"
-            tools:text="@string/product_price_format" />
+            tools:text="@string/product_price_format"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
