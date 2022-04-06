@@ -1,17 +1,33 @@
 package com.trempel.home_page.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.home_page.R
 import com.example.home_page.databinding.HomePageFragmentBinding
+import dagger.android.support.AndroidSupportInjection
 import com.trempel.core_ui.BaseFragment
+import javax.inject.Inject
 
-internal class HomePageFragment : BaseFragment() {
+class HomePageFragment : BaseFragment() {
 
     override val isToolbarVisible: Boolean = false
+
+    @Inject
+    lateinit var viewModel: HomePageViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,14 +36,56 @@ internal class HomePageFragment : BaseFragment() {
     ): View {
         return HomePageFragmentBinding.inflate(layoutInflater).apply {
             this.lifecycleOwner = this@HomePageFragment
+            this.viewModel = this@HomePageFragment.viewModel
         }.also {
             it.setOnClickListenerHomeBtn()
+            it.setEditorActionListener()
+            observeSearch()
+            observeToast()
         }.root
     }
 
     private fun HomePageFragmentBinding.setOnClickListenerHomeBtn() {
         btnToCategories.setOnClickListener {
-            findNavController().navigate(R.id.action_homePageFragment_to_homeCategoryFragment)
+            findNavController().navigate(R.id.action_homePageFragment_to_nav_graph_categories)
         }
+    }
+
+    private fun HomePageFragmentBinding.setEditorActionListener() {
+        this.etSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel?.submitText()
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    private fun observeSearch() {
+        viewModel.submitOnSearch.ignoreFirst().observe(this.viewLifecycleOwner) {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToSearchFragment(it)
+            view?.findNavController()?.navigate(action)
+        }
+    }
+
+    private fun observeToast() {
+        viewModel.toast.observe(this.viewLifecycleOwner) {
+            Toast.makeText(
+                this.context,
+                resources.getText(R.string.toast_text_search),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun <T> LiveData<T>.ignoreFirst(): LiveData<T> {
+        val result = MediatorLiveData<T>()
+        var isFirst = true
+        result.addSource(this) {
+            if (isFirst) isFirst = false
+            else result.value = it
+        }
+        return result
     }
 }

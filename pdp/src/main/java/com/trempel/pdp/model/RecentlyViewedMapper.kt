@@ -1,6 +1,5 @@
-package com.example.trempel.network
+package com.trempel.pdp.model
 
-import com.trempel.pdp.model.ProductDomainModel
 import com.trempel.pdp.db.RecentlyViewed
 
 internal fun ProductDomainModel.toRecentlyViewed(): RecentlyViewed {

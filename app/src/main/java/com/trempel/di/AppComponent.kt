@@ -8,6 +8,8 @@ import com.trempel.pdp.di.PdpFragmentModule
 import com.trempel.MyApplication
 import com.trempel.bag.di.BagDataModule
 import com.trempel.bag.di.BagFragmentModule
+import com.trempel.home_page.di.HomePageFragmentModule
+import com.trempel.home_page.di.SearchFragmentModule
 import com.trempel.ui.main_activity.MainActivity
 import dagger.*
 import dagger.android.support.AndroidSupportInjectionModule
@@ -23,7 +25,9 @@ import javax.inject.Singleton
         CategoryFragmentModule::class,
         CategoryProductsFragmentModule::class,
         BagFragmentModule::class,
-        BagDataModule::class
+        BagDataModule::class,
+        SearchFragmentModule::class,
+        HomePageFragmentModule::class
     ]
 )
 internal interface AppComponent {
