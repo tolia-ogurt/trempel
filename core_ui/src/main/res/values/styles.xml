@@ -61,8 +61,27 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="BtnWhiteCloseDialog" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="lineHeight">@dimen/normal_100</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:background">@drawable/btn_close_network_excep_dialog</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
     <style name="ProgressBar">
         <item name="android:indeterminateTint">@color/grey</item>
+    </style>
+
+    <style name="BaseTextDark.AlertDialogTitle">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="BaseTextDark.AlertDialogExceptionDescription">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="fontFamily">@font/montserrat_light</item>
     </style>
 
 </resources>

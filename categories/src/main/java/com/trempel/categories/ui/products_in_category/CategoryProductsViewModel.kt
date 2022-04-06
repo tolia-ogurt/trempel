@@ -1,6 +1,5 @@
 package com.trempel.categories.ui.products_in_category
 
-import android.util.Log
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.LiveData
@@ -11,8 +10,11 @@ import com.trempel.categories.repo.CategoryRepository
 import com.trempel.categories.model.CategoryDomainModel
 import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.core_ui.RecyclerItem
+import com.trempel.core_ui.SingleLiveEvent
+import com.trempel.core_ui.exceptions.TrempelException
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.exceptions.CompositeException
 import javax.inject.Inject
 
 class CategoryProductsViewModel @Inject constructor(
@@ -22,8 +24,8 @@ class CategoryProductsViewModel @Inject constructor(
 
     private val _items = MutableLiveData<List<RecyclerItem>>()
     val items: LiveData<List<RecyclerItem>> get() = _items
-    private val _errorLiveData = MutableLiveData<String>()
-    val errorLiveData: LiveData<String> get() = _errorLiveData
+    private val _errorLiveData = SingleLiveEvent<TrempelException?>()
+    val errorLiveData: LiveData<TrempelException?> get() = _errorLiveData
     private var disposable: Disposable? = null
     val isInProgressTemp = ObservableBoolean(true)
 
@@ -40,8 +42,8 @@ class CategoryProductsViewModel @Inject constructor(
                 _items.value = response.map { CategoryProductItemViewModel(it, bagDbRepository) }
                     .map { it.toRecyclerItem() }
             }, { error ->
-                _errorLiveData.value = error.message
-                Log.e("Categories all", error.stackTraceToString())
+                _errorLiveData.value =
+                    (error as? CompositeException)?.exceptions?.first() as? TrempelException
             })
     }
 

@@ -31,7 +31,7 @@ android {
 dependencies {
     def nav_version = "2.3.5"
     def retrofit_version = "2.9.0"
-    def glide_version = "4.12.0"
+    def okhttp_version = "4.9.3"
     def gson_version = "2.5.0"
     def dagger_version = "2.35.1"
     def rxJava2_version ="2.2.12"
@@ -64,6 +64,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rxJavaAdapter_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     //Dagger 2
     implementation "com.google.dagger:dagger:$dagger_version"

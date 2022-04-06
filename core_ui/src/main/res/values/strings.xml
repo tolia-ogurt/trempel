@@ -17,6 +17,12 @@
     <string name="text_hint_search">Search</string>
     <string name="text_home_page">Ready for the shopping?</string>
     <string name="text_btn_home_page">Visit our Categories</string>
+    <string name="title_network_excep_dialog">Oops! Connection is unstable</string>
+    <string name="title_service_excep_dialog">Something went wrong</string>
+    <string name="description_network_excep_dialog">Unfortunately, there are some connection issues on your end. Hit “Retry” to try again.</string>
+    <string name="description_service_excep_dialog">Unfortunately, we are currently having some technical problems. Please try again later.</string>
+    <string name="btn_close_dialog">Close</string>
+    <string name="btn_retry">Retry</string>
     <string name="toast_text_search">You must enter the word</string>
     <string name="text_no_result">No matching results</string>
     <string name="checkout">Checkout</string>

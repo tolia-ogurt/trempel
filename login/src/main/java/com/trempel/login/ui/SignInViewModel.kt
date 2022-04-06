@@ -4,9 +4,12 @@ import androidx.databinding.ktx.BuildConfig
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.trempel.core_ui.SingleLiveEvent
+import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.login.repo.SignInRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.exceptions.CompositeException
 import javax.inject.Inject
 
 class SignInViewModel @Inject constructor(
@@ -15,8 +18,8 @@ class SignInViewModel @Inject constructor(
 
     private val _successLiveData = MutableLiveData<Unit>()
     val successLiveData: LiveData<Unit> get() = _successLiveData
-    private val _errorLiveData = MutableLiveData<String>()
-    val errorLiveData: LiveData<String> get() = _errorLiveData
+    private val _errorLiveData = SingleLiveEvent<TrempelException?>()
+    val errorLiveData: LiveData<TrempelException?> get() = _errorLiveData
     private var disposable: Disposable? = null
     val loginEditTextData = MutableLiveData<String>()
     val passwordEditTextData = MutableLiveData<String>()
@@ -29,7 +32,8 @@ class SignInViewModel @Inject constructor(
             .subscribe({
                 _successLiveData.value = Unit
             }, { error ->
-                _errorLiveData.value = error.message
+                _errorLiveData.value =
+                    (error as? CompositeException)?.exceptions?.first() as? TrempelException
             })
     }
 

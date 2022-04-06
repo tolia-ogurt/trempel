@@ -7,6 +7,11 @@ import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.example.categories.databinding.CategoryProductsFragmentBinding
 import com.trempel.core_ui.BaseFragment
+import com.trempel.core_ui.exceptions.NetworkExceptionDialog
+import com.trempel.core_ui.exceptions.NetworkExceptionDialog.Companion.NETWORK_EXCEPTION_DIALOG
+import com.trempel.core_ui.exceptions.ServiceExceptionDialog
+import com.trempel.core_ui.exceptions.ServiceExceptionDialog.Companion.SERVICE_EXCEPTION_DIALOG
+import com.trempel.core_ui.exceptions.TrempelException
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -39,7 +44,14 @@ class CategoryProductsFragment : BaseFragment() {
 
     private fun observeExceptionResponse() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+            if (it is TrempelException.Network) {
+                NetworkExceptionDialog()
+                    .apply { retryCall = { viewModel.loadProduct(args.category) } }
+                    .show(childFragmentManager, NETWORK_EXCEPTION_DIALOG)
+            } else {
+                ServiceExceptionDialog()
+                    .show(childFragmentManager, SERVICE_EXCEPTION_DIALOG)
+            }
         })
     }
 }

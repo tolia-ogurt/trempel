@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.home_page.R
@@ -63,7 +61,7 @@ class HomePageFragment : BaseFragment() {
     }
 
     private fun observeSearch() {
-        viewModel.submitOnSearch.ignoreFirst().observe(this.viewLifecycleOwner) {
+        viewModel.submitOnSearch.observe(this.viewLifecycleOwner) {
             val action = HomePageFragmentDirections.actionHomePageFragmentToSearchFragment(it)
             view?.findNavController()?.navigate(action)
         }
@@ -77,15 +75,5 @@ class HomePageFragment : BaseFragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-    }
-
-    private fun <T> LiveData<T>.ignoreFirst(): LiveData<T> {
-        val result = MediatorLiveData<T>()
-        var isFirst = true
-        result.addSource(this) {
-            if (isFirst) isFirst = false
-            else result.value = it
-        }
-        return result
     }
 }
