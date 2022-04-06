@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
@@ -20,6 +21,7 @@ class DataBindingRecyclerAdapter :
     ): BindingViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding: ViewDataBinding = DataBindingUtil.inflate(inflater, viewType, parent, false)
+        binding.lifecycleOwner = parent.findViewTreeLifecycleOwner()
         return BindingViewHolder(binding)
     }
 

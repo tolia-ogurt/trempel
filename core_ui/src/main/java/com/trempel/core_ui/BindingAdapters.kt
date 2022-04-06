@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.trempel.core_ui.DataBindingRecyclerAdapter
 import com.trempel.core_ui.RecyclerItem
+import com.trempel.core_ui.SwipeItemForDelete
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
@@ -57,4 +58,14 @@ internal fun setRecyclerViewItems(recyclerView: RecyclerView, items: List<Recycl
         recyclerView.adapter = adapter
     }
     adapter.submitList(items.orEmpty())
+}
+
+@BindingAdapter("app:minValueActiveBtn")
+fun View.minValueActiveBtn(quantity: Int) {
+    this.isEnabled = quantity > 1
+}
+
+@BindingAdapter("swipe")
+fun View.swipe(isSwipe: Boolean) {
+    if (isSwipe) setOnTouchListener(SwipeItemForDelete())
 }
