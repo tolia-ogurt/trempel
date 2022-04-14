@@ -50,7 +50,7 @@ internal class MainActivity : BaseActivity() {
                 R.navigation.nav_graph_home_page,
                 R.navigation.nav_graph_categories,
                 R.navigation.nav_grpah_bag,
-                R.navigation.nav_graph_favourites,
+                R.navigation.nav_grpah_favorites,
                 R.navigation.nav_graph_profile
             ),
             fragmentManager = supportFragmentManager,
@@ -62,7 +62,7 @@ internal class MainActivity : BaseActivity() {
                 R.id.homePageFragment,
                 R.id.categoryFragment,
                 R.id.bagFragment,
-                R.id.favouritesFragment,
+                R.id.favoritesFragment,
                 R.id.profileFragment
             ),
             fallbackOnNavigateUpListener = ::onSupportNavigateUp

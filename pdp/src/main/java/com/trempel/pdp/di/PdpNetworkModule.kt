@@ -2,16 +2,11 @@ package com.trempel.pdp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.pdp.R
 import com.trempel.pdp.db.AppDataBase
-import com.trempel.pdp.repo.ProductRepository
-import com.trempel.pdp.repo.ProductRepositoryImpl
 import com.trempel.pdp.service.ProductService
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 @Module
 internal class PdpNetworkModule {

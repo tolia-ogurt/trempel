@@ -46,6 +46,7 @@ dependencies {
     implementation project(path: ":core_data")
     implementation project(path: ":categories")
     implementation project(path: ":bag")
+    implementation project(path: ":favorites")
 
     //Room
     implementation "androidx.room:room-runtime:$roomVersion"

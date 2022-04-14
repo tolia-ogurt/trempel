@@ -134,8 +134,8 @@
             android:layout_marginStart="@dimen/normal_150"
             android:layout_marginEnd="@dimen/normal_150"
             android:layout_marginBottom="@dimen/normal_150"
-            android:text="@string/btn_add_to_cart"
             android:onClick="@{() -> viewModel.addProductToBag()}"
+            android:text="@string/btn_add_to_cart"
             app:layout_constraintBottom_toBottomOf="@id/view"
             app:layout_constraintEnd_toEndOf="@id/view"
             app:layout_constraintStart_toStartOf="@id/view" />
@@ -150,5 +150,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:visibility="@{viewModel.isInProgress}" />
+
+        <CheckBox
+            android:id="@+id/cb_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_100"
+            android:layout_marginEnd="@dimen/normal_100"
+            android:button="@drawable/ic_favorite"
+            android:checked="@{viewModel.isFavorite}"
+            android:onCheckedChanged="@{(view,isChecked) -> viewModel.transferringItemFavorites(isChecked)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

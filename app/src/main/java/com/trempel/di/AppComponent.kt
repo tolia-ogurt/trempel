@@ -8,6 +8,8 @@ import com.trempel.pdp.di.PdpFragmentModule
 import com.trempel.MyApplication
 import com.trempel.bag.di.BagDataModule
 import com.trempel.bag.di.BagFragmentModule
+import com.trempel.favorites.di.FavoritesDataModule
+import com.trempel.favorites.di.FavoritesFragmentModule
 import com.trempel.home_page.di.HomePageFragmentModule
 import com.trempel.home_page.di.SearchFragmentModule
 import com.trempel.ui.main_activity.MainActivity
@@ -27,7 +29,9 @@ import javax.inject.Singleton
         BagFragmentModule::class,
         BagDataModule::class,
         SearchFragmentModule::class,
-        HomePageFragmentModule::class
+        HomePageFragmentModule::class,
+        FavoritesFragmentModule::class,
+        FavoritesDataModule::class
     ]
 )
 internal interface AppComponent {
