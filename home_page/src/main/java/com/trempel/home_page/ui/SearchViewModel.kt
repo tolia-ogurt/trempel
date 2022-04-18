@@ -32,7 +32,7 @@ class SearchViewModel @Inject constructor(
                     .map { SearchItemViewModel(it) }
                     .map { it.toRecyclerItem() }
             }.onFailure { error ->
-                _errorLiveData.value = (error as? IOException) as? TrempelException
+                _errorLiveData.value = error as? TrempelException
             }.onSuccess { response ->
                 _items.postValue(response)
             }

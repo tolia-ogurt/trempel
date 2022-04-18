@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.trempel.bag.databinding.BagFragmentBinding
 import com.trempel.core_ui.BaseFragment
-import com.trempel.core_ui.exceptions.NetworkExceptionDialog
-import com.trempel.core_ui.exceptions.ServiceExceptionDialog
-import com.trempel.core_ui.exceptions.TrempelException
+import com.trempel.core_ui.exceptions.ExceptionDialog
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -40,16 +38,9 @@ class BagFragment : BaseFragment() {
 
     private fun observeExceptionResponse() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            if (it is TrempelException.Network) {
-                NetworkExceptionDialog()
-                    .apply { retryCall = viewModel::loadData }
-                    .show(childFragmentManager, NetworkExceptionDialog.NETWORK_EXCEPTION_DIALOG)
-            } else {
-                ServiceExceptionDialog().show(
-                    childFragmentManager,
-                    ServiceExceptionDialog.SERVICE_EXCEPTION_DIALOG
-                )
-            }
+            ExceptionDialog(it)
+                .apply { retryCall = viewModel::loadData }
+                .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
         })
     }
 }

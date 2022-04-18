@@ -9,7 +9,6 @@ import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.login.repo.SignInRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.exceptions.CompositeException
 import javax.inject.Inject
 
 class SignInViewModel @Inject constructor(
@@ -32,8 +31,7 @@ class SignInViewModel @Inject constructor(
             .subscribe({
                 _successLiveData.value = Unit
             }, { error ->
-                _errorLiveData.value =
-                    (error as? CompositeException)?.exceptions?.first() as? TrempelException
+                _errorLiveData.value = error as? TrempelException
             })
     }
 

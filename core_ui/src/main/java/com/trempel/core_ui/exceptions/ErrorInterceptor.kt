@@ -9,14 +9,14 @@ class ErrorInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         return runCatching {
             chain.proceed(chain.request())
-        }.onSuccess { response ->
-            response.takeIf { it.isSuccessful } ?: throw TrempelException.Service
         }.onFailure {
             throw when (it) {
                 is InterruptedIOException -> TrempelException.Network
                 is UnknownHostException -> TrempelException.Network
                 else -> TrempelException.Service
             }
+        }.onSuccess { response ->
+            response.takeIf { it.isSuccessful } ?: throw TrempelException.Service
         }.getOrThrow()
     }
 }

@@ -10,9 +10,7 @@ import com.trempel.bag.repository.BagNetworkRepository
 import com.trempel.core_ui.RecyclerItem
 import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.core_ui.exceptions.TrempelException
-import io.reactivex.exceptions.CompositeException
 import kotlinx.coroutines.launch
-import java.io.IOException
 import javax.inject.Inject
 
 class BagViewModel @Inject constructor(
@@ -66,7 +64,7 @@ class BagViewModel @Inject constructor(
                     }
                     .map { it.toRecyclerItem() }
             }.onFailure { error ->
-                _errorLiveData.value = (error as? IOException) as? TrempelException
+                _errorLiveData.value = error as? TrempelException
             }.onSuccess {
                 _bagItems.value = it
             }

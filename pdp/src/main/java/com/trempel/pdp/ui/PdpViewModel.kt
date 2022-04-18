@@ -15,7 +15,6 @@ import com.trempel.pdp.repo.RecentlyViewedRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.exceptions.CompositeException
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -50,8 +49,7 @@ class PdpViewModel @Inject constructor(
                 _product.value = response
                 addRecentlyViewedProduct(response)
             }, { error ->
-                _errorLiveData.value =
-                    (error as? CompositeException)?.exceptions?.first() as? TrempelException
+                _errorLiveData.value = error as? TrempelException
             })
     }
 

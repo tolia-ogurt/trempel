@@ -14,7 +14,6 @@ import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.core_ui.exceptions.TrempelException
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.exceptions.CompositeException
 import javax.inject.Inject
 
 class CategoryProductsViewModel @Inject constructor(
@@ -42,8 +41,7 @@ class CategoryProductsViewModel @Inject constructor(
                 _items.value = response.map { CategoryProductItemViewModel(it, bagDbRepository) }
                     .map { it.toRecyclerItem() }
             }, { error ->
-                _errorLiveData.value =
-                    (error as? CompositeException)?.exceptions?.first() as? TrempelException
+                _errorLiveData.value = error as? TrempelException
             })
     }
 

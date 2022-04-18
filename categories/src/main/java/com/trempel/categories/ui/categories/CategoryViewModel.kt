@@ -10,10 +10,8 @@ import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.categories.repo.CategoryRepository
 import com.trempel.core_ui.RecyclerItem
 import com.trempel.core_ui.SingleLiveEvent
-import com.trempel.core_ui.exceptions.NetworkExceptionDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.exceptions.CompositeException
 import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(
@@ -40,8 +38,7 @@ class CategoryViewModel @Inject constructor(
                 _categories.value = response.map { CategoriesItemViewModel(it) }
                     .map { it.toRecyclerItem() }
             }, { error ->
-                _errorLiveData.value =
-                    (error as? CompositeException)?.exceptions?.first() as? TrempelException
+                _errorLiveData.value = error as? TrempelException
             })
     }
 
