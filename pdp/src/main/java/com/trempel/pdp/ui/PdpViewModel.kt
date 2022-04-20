@@ -3,7 +3,6 @@ package com.trempel.pdp.ui
 import android.util.Log
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.*
-import androidx.navigation.fragment.navArgs
 import com.trempel.core_ui.RecyclerItem
 import com.example.pdp.BR
 import com.example.pdp.R

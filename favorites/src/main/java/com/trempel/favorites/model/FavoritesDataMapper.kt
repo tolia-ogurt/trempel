@@ -3,7 +3,7 @@ package com.trempel.favorites.model
 import com.trempel.core_network.ProductModel
 import com.trempel.core_network.favorites_db.db.FavoritesEntity
 
-fun ProductModel.toFavoritesDomainModel(productQuantity: Int): FavoritesDomainModel {
+internal fun ProductModel.toFavoritesDomainModel(productQuantity: Int): FavoritesDomainModel {
     return FavoritesDomainModel(
         id = this.id,
         image = this.image,
@@ -13,7 +13,7 @@ fun ProductModel.toFavoritesDomainModel(productQuantity: Int): FavoritesDomainMo
     )
 }
 
-fun FavoritesDomainModel.toFavoritesEntity(quantity: Int = 1): FavoritesEntity {
+internal fun FavoritesDomainModel.toFavoritesEntity(quantity: Int = 1): FavoritesEntity {
     return FavoritesEntity(
         productId = this.id,
         quantity = quantity,

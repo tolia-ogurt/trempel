@@ -4,7 +4,7 @@ import com.trempel.core_network.ProductModel
 import com.trempel.favorites.service.FavoritesService
 import javax.inject.Inject
 
-class FavoritesNetworkRepositoryImpl @Inject constructor(
+internal class FavoritesNetworkRepositoryImpl @Inject constructor(
     private val favoritesService: FavoritesService,
 ) : FavoritesNetworkRepository {
 

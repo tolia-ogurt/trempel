@@ -22,7 +22,7 @@ class FavoritesNetworkModule {
     fun provideFavoritesDao(db: FavoritesDataBase) = db.getFavoritesDao()
 
     @Provides
-    fun provideFavoritesService(retrofit: Retrofit): FavoritesService {
+    internal fun provideFavoritesService(retrofit: Retrofit): FavoritesService {
         return retrofit.create(FavoritesService::class.java)
     }
 

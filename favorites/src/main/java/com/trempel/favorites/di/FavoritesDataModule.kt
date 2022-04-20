@@ -11,7 +11,7 @@ import dagger.Module
 abstract class FavoritesDataModule {
 
     @Binds
-    abstract fun provideFavoritesNetworkRepository(
+    internal abstract fun provideFavoritesNetworkRepository(
         favoritesNetworkRepositoryImpl: FavoritesNetworkRepositoryImpl
     ): FavoritesNetworkRepository
 
