@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.categories.R
 import com.example.categories.databinding.CategoryFragmentBinding
 import com.trempel.core_ui.BaseFragment
+import com.trempel.core_ui.exceptions.ExceptionDialog
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -40,7 +40,9 @@ class CategoryFragment : BaseFragment() {
 
     private fun observeExceptionResponse() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+            ExceptionDialog(it)
+                .apply { retryCall = viewModel::loadProduct }
+                .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
         })
     }
 }

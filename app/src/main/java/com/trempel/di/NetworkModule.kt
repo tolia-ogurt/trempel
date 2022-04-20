@@ -1,5 +1,6 @@
 package com.trempel.di
 
+import com.trempel.core_ui.exceptions.ErrorInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -27,6 +28,7 @@ internal class NetworkModule {
 
     private val okHttpClient = OkHttpClient()
         .newBuilder()
+        .addInterceptor(ErrorInterceptor())
         .readTimeout(60, TimeUnit.SECONDS)
         .connectTimeout(60, TimeUnit.SECONDS)
         .build()

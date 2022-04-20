@@ -3,12 +3,14 @@ package com.trempel.home_page.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.trempel.core_ui.SingleLiveEvent
+import com.trempel.core_ui.exceptions.TrempelException
 import javax.inject.Inject
 
 class HomePageViewModel @Inject constructor() : ViewModel() {
 
     val searchQueryData = MutableLiveData<String>()
-    private val _submitOnSearch = MutableLiveData("")
+    private val _submitOnSearch = SingleLiveEvent<String>()
     val submitOnSearch: LiveData<String> get() = _submitOnSearch
     private val _toast = MutableLiveData<Unit>()
     val toast: LiveData<Unit> get() = _toast

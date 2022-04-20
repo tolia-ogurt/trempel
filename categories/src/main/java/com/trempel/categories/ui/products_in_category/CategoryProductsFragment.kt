@@ -3,10 +3,10 @@ package com.trempel.categories.ui.products_in_category
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.example.categories.databinding.CategoryProductsFragmentBinding
 import com.trempel.core_ui.BaseFragment
+import com.trempel.core_ui.exceptions.ExceptionDialog
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -39,7 +39,9 @@ class CategoryProductsFragment : BaseFragment() {
 
     private fun observeExceptionResponse() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+            ExceptionDialog(it)
+                .apply { retryCall = { viewModel.loadProduct(args.category) } }
+                .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
         })
     }
 }

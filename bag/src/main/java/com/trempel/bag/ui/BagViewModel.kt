@@ -8,6 +8,8 @@ import com.trempel.bag.model.toBagEntity
 import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.bag.repository.BagNetworkRepository
 import com.trempel.core_ui.RecyclerItem
+import com.trempel.core_ui.SingleLiveEvent
+import com.trempel.core_ui.exceptions.TrempelException
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,6 +20,8 @@ class BagViewModel @Inject constructor(
 
     private val _bagItems = MutableLiveData<List<RecyclerItem>>()
     val bagItems: LiveData<List<RecyclerItem>> get() = _bagItems
+    private val _errorLiveData = SingleLiveEvent<TrempelException?>()
+    val errorLiveData: LiveData<TrempelException?> get() = _errorLiveData
     val quantity = MediatorLiveData<Int>()
 
     private val _total = MutableLiveData<Float>()
@@ -43,21 +47,27 @@ class BagViewModel @Inject constructor(
         loadData()
     }
 
-    private fun loadData() {
+    fun loadData() {
         viewModelScope.launch {
-            _bagItems.value = bagDbRepository.getProductsFromDbBag()
-                .map { bagNetworkRepository.getProduct(it.productId) to it.quantity }
-                .map { it.first.toBagDomainModel(it.second) }
-                .map { BagItemViewModel(it) }
-                .onEach {
-                    quantity.addSource(it.quantity) {
-                        quantity.value = getQuantitySum()
-                        _total.value = getFinalPrice()
+            runCatching {
+                bagDbRepository.getProductsFromDbBag()
+                    .map { bagNetworkRepository.getProduct(it.productId) to it.quantity }
+                    .map { it.first.toBagDomainModel(it.second) }
+                    .map { BagItemViewModel(it) }
+                    .onEach {
+                        quantity.addSource(it.quantity) {
+                            quantity.value = getQuantitySum()
+                            _total.value = getFinalPrice()
+                        }
+                    }.onEach {
+                        it.deleteLiveData.observeForever(deleteObserver)
                     }
-                }.onEach {
-                    it.deleteLiveData.observeForever(deleteObserver)
-                }
-                .map { it.toRecyclerItem() }
+                    .map { it.toRecyclerItem() }
+            }.onFailure { error ->
+                _errorLiveData.value = error as? TrempelException
+            }.onSuccess {
+                _bagItems.value = it
+            }
         }
     }
 

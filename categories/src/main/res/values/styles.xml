@@ -20,4 +20,8 @@
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
 
+    <style name="CustomAlertDialog">
+        <item name="android:windowBackground">@drawable/rounded_corner_exception_dialog</item>
+    </style>
+
 </resources>

@@ -6,7 +6,9 @@ import androidx.lifecycle.*
 import com.trempel.core_ui.RecyclerItem
 import com.example.pdp.BR
 import com.example.pdp.R
+import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.core_network.bag_db.db.BagDbRepository
+import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.pdp.model.ProductDomainModel
 import com.trempel.pdp.repo.ProductRepository
 import com.trempel.pdp.repo.RecentlyViewedRepository
@@ -26,8 +28,8 @@ class PdpViewModel @Inject constructor(
     val recentlyViewed: LiveData<List<RecyclerItem>> get() = _recentlyViewed
     private val _product = MutableLiveData<ProductDomainModel>()
     val product: LiveData<ProductDomainModel> get() = _product
-    private val _errorLiveData = MutableLiveData<String>()
-    val errorLiveData: LiveData<String> get() = _errorLiveData
+    private val _errorLiveData = SingleLiveEvent<TrempelException?>()
+    val errorLiveData: LiveData<TrempelException?> get() = _errorLiveData
     private val disposable = CompositeDisposable()
     var isInProgress = ObservableBoolean(true)
 
@@ -47,7 +49,7 @@ class PdpViewModel @Inject constructor(
                 _product.value = response
                 addRecentlyViewedProduct(response)
             }, { error ->
-                _errorLiveData.value = error.message
+                _errorLiveData.value = error as? TrempelException
             })
     }
 

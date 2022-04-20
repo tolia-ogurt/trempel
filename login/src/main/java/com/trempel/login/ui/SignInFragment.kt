@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.login.databinding.SignInFragmentBinding
 import com.trempel.core_ui.BaseFragment
+import com.trempel.core_ui.exceptions.ExceptionDialog
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -46,8 +46,9 @@ class SignInFragment : BaseFragment() {
 
     private fun observeExceptionResponse() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            Toast.makeText(this.context, "Login or password is not correct", Toast.LENGTH_SHORT)
-                .show()
+            ExceptionDialog(it)
+                .apply { retryCall = viewModel::login }
+                .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
         })
     }
 }

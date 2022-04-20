@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.example.pdp.databinding.PdpFragmentBinding
 import com.trempel.core_ui.BaseFragment
+import com.trempel.core_ui.exceptions.ExceptionDialog
+import com.trempel.core_ui.exceptions.ExceptionDialog.Companion.SERVICE_EXCEPTION_DIALOG
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -42,7 +43,9 @@ class PdpFragment : BaseFragment() {
 
     private fun observeExceptionResponse() {
         viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+            ExceptionDialog(it)
+                .apply { retryCall = { viewModel.loadProduct(args.productId) } }
+                .show(childFragmentManager, SERVICE_EXCEPTION_DIALOG)
         })
     }
 }

@@ -44,12 +44,16 @@ dependencies {
     def gson_version = "2.5.0"
     def retrofit_version = "2.9.0"
     def dagger_version = "2.35.1"
+    def coroutines_version = "1.5.2"
 
     implementation project(path: ":core_ui")
     implementation project(path: ":core_data")
     implementation project(path: ":categories")
     implementation project(path: ":login")
     implementation project(path: ":pdp")
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

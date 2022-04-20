@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.categories.R
+import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.categories.repo.CategoryRepository
 import com.trempel.core_ui.RecyclerItem
+import com.trempel.core_ui.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
@@ -18,8 +20,8 @@ class CategoryViewModel @Inject constructor(
 
     private val _categories = MutableLiveData<List<RecyclerItem>>()
     val categories: LiveData<List<RecyclerItem>> get() = _categories
-    private val _errorLiveData = MutableLiveData<String>()
-    val errorLiveData: LiveData<String> get() = _errorLiveData
+    private val _errorLiveData = SingleLiveEvent<TrempelException?>()
+    val errorLiveData: LiveData<TrempelException?> get() = _errorLiveData
     private var disposable: Disposable? = null
     val isInProgressTemp = ObservableBoolean(true)
 
@@ -36,7 +38,7 @@ class CategoryViewModel @Inject constructor(
                 _categories.value = response.map { CategoriesItemViewModel(it) }
                     .map { it.toRecyclerItem() }
             }, { error ->
-                _errorLiveData.value = error.message
+                _errorLiveData.value = error as? TrempelException
             })
     }
 
