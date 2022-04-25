@@ -4,6 +4,8 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.*
 import com.example.home_page.R
+import com.trempel.core_network.bag_db.db.BagDbRepository
+import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
 import com.trempel.core_ui.RecyclerItem
 import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.core_ui.exceptions.TrempelException
@@ -13,7 +15,9 @@ import java.io.IOException
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
-    private val searchRepository: SearchRepository
+    private val searchRepository: SearchRepository,
+    private val bagDbRepository: BagDbRepository,
+    private val favoritesDbRepository: FavoritesDbRepository
 ) : ViewModel() {
 
     private val _items = MutableLiveData<List<RecyclerItem>>()
@@ -29,7 +33,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             runCatching {
                 searchRepository.getProductsBySearchQuery(keyWord)
-                    .map { SearchItemViewModel(it) }
+                    .map { SearchItemViewModel(it, favoritesDbRepository, bagDbRepository) }
                     .map { it.toRecyclerItem() }
             }.onFailure { error ->
                 _errorLiveData.value = error as? TrempelException

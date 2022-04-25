@@ -5,20 +5,24 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.categories.R
 import com.trempel.categories.repo.CategoryRepository
 import com.trempel.categories.model.CategoryDomainModel
 import com.trempel.core_network.bag_db.db.BagDbRepository
+import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
 import com.trempel.core_ui.RecyclerItem
 import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.core_ui.exceptions.TrempelException
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CategoryProductsViewModel @Inject constructor(
     private val serviceRepository: CategoryRepository,
-    private val bagDbRepository: BagDbRepository
+    private val bagDbRepository: BagDbRepository,
+    private val favoritesDbRepository: FavoritesDbRepository
 ) : ViewModel() {
 
     private val _items = MutableLiveData<List<RecyclerItem>>()
@@ -38,7 +42,13 @@ class CategoryProductsViewModel @Inject constructor(
                 isInProgressTemp.set(false)
             }
             .subscribe({ response ->
-                _items.value = response.map { CategoryProductItemViewModel(it, bagDbRepository) }
+                _items.value = response.map {
+                    CategoryProductItemViewModel(
+                        it,
+                        bagDbRepository,
+                        favoritesDbRepository
+                    )
+                }
                     .map { it.toRecyclerItem() }
             }, { error ->
                 _errorLiveData.value = error as? TrempelException

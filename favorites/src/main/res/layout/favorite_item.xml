@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.trempel.favorites.ui.FavoriteItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_item_in_bag"
+            android:layout_marginTop="@dimen/small_125"
+            android:layout_marginEnd="@dimen/normal_100"
+            android:layout_marginBottom="@dimen/small_125"
+            android:backgroundTint="@color/white"
+            android:onClick="@{() -> item.deleteItem()}"
+            android:src="@drawable/delete_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            swipe="@{true}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_item_in_bag"
+            android:layout_marginStart="@dimen/normal_100"
+            android:layout_marginTop="@dimen/small_125"
+            android:layout_marginEnd="@dimen/normal_100"
+            android:background="@color/white"
+            android:onClick="@{(view) -> item.onItemClicked(view,item.item.id)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/view_background"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_item_in_bag"
+                android:background="@drawable/item_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_product"
+                imageUrl="@{item.item.image}"
+                android:layout_width="@dimen/large_150"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/small_150"
+                android:layout_marginTop="@dimen/small_150"
+                android:layout_marginBottom="@dimen/small_150"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="@id/view_background"
+                app:layout_constraintStart_toStartOf="@id/view_background"
+                app:layout_constraintTop_toTopOf="@id/view_background"
+                tools:src="@drawable/image_product" />
+
+            <TextView
+                android:id="@+id/tv_product_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_150"
+                android:layout_marginTop="@dimen/small_150"
+                android:layout_marginEnd="@dimen/normal_100"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat_light"
+                android:lineHeight="@dimen/normal_100"
+                android:maxLines="2"
+                android:text="@{item.item.title}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_text_size"
+                app:layout_constraintEnd_toEndOf="@id/view_background"
+                app:layout_constraintStart_toEndOf="@id/iv_product"
+                app:layout_constraintTop_toTopOf="@id/view_background"
+                tools:text="@string/product_title" />
+
+            <TextView
+                android:id="@+id/tv_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_light"
+                android:lineHeight="@dimen/normal_100"
+                android:text="@{@string/product_price_format(item.item.price)}"
+                android:textColor="@color/color_light_grey"
+                android:textSize="@dimen/small_text_size"
+                app:layout_constraintStart_toStartOf="@id/tv_product_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+                tools:text="@string/product_price_format" />
+
+            <ImageView
+                android:id="@+id/iv_add_product"
+                android:layout_width="@dimen/normal_100"
+                android:layout_height="@dimen/normal_100"
+                android:layout_marginEnd="@dimen/small_125"
+                android:layout_marginBottom="@dimen/small_125"
+                android:onClick="@{() -> item.increaseItemQuantity()}"
+                android:src="@drawable/ic_add"
+                app:layout_constraintBottom_toBottomOf="@id/view_background"
+                app:layout_constraintEnd_toEndOf="@id/view_background" />
+
+            <TextView
+                android:id="@+id/tv_quantity_products"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_175"
+                android:fontFamily="@font/montserrat_light"
+                android:lineHeight="@dimen/small_150"
+                android:text="@{item.quantity.toString()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/iv_add_product"
+                app:layout_constraintEnd_toStartOf="@id/iv_add_product"
+                app:layout_constraintTop_toTopOf="@id/iv_add_product"
+                tools:text="1" />
+
+            <ImageView
+                android:id="@+id/iv_remove_product_active"
+                android:layout_width="@dimen/normal_100"
+                android:layout_height="@dimen/normal_100"
+                android:layout_marginEnd="@dimen/small_175"
+                android:onClick="@{() -> item.reduceItemQuantity()}"
+                android:src="@drawable/ic_remove"
+                app:layout_constraintBottom_toBottomOf="@id/iv_add_product"
+                app:layout_constraintEnd_toStartOf="@id/tv_quantity_products"
+                app:layout_constraintTop_toTopOf="@id/iv_add_product"
+                app:minValueActiveBtn="@{item.quantity}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

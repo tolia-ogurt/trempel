@@ -10,9 +10,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.trempel.core_ui.DataBindingRecyclerAdapter
-import com.trempel.core_ui.RecyclerItem
-import com.trempel.core_ui.SwipeItemForDelete
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {

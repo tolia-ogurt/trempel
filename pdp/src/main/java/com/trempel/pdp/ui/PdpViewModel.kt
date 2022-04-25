@@ -8,6 +8,7 @@ import com.example.pdp.BR
 import com.example.pdp.R
 import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.core_network.bag_db.db.BagDbRepository
+import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
 import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.pdp.model.ProductDomainModel
 import com.trempel.pdp.repo.ProductRepository
@@ -21,7 +22,8 @@ import javax.inject.Inject
 class PdpViewModel @Inject constructor(
     private val serviceRepository: ProductRepository,
     private val roomRepository: RecentlyViewedRepository,
-    private val bagDbRepository: BagDbRepository
+    private val bagDbRepository: BagDbRepository,
+    private val favoritesDbRepository: FavoritesDbRepository,
 ) : ViewModel() {
 
     private val _recentlyViewed = MutableLiveData<List<RecyclerItem>>()
@@ -32,8 +34,12 @@ class PdpViewModel @Inject constructor(
     val errorLiveData: LiveData<TrempelException?> get() = _errorLiveData
     private val disposable = CompositeDisposable()
     var isInProgress = ObservableBoolean(true)
+    var isFavorite = MediatorLiveData<Boolean>()
 
     fun loadProduct(productId: Int) {
+        isFavorite.addSource(favoritesDbRepository.isFavorite(productId)) {
+            isFavorite.value = it
+        }
         disposable += serviceRepository.getProduct(productId)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
@@ -51,6 +57,19 @@ class PdpViewModel @Inject constructor(
             }, { error ->
                 _errorLiveData.value = error as? TrempelException
             })
+    }
+
+    fun transferringItemFavorites(isChecked: Boolean) {
+        if (isChecked == isFavorite.value) return
+        if (isChecked) {
+            viewModelScope.launch {
+                product.value?.id?.let { favoritesDbRepository.addProductToFavorites(it) }
+            }
+        } else {
+            viewModelScope.launch {
+                product.value?.id?.let { favoritesDbRepository.deleteProductFromDbFavoritesById(it) }
+            }
+        }
     }
 
     fun getRecentlyViewedProduct(idProduct: Int) {

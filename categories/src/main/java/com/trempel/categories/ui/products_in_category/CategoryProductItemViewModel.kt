@@ -6,13 +6,26 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.trempel.categories.model.CategoryProduct
 import com.trempel.core_network.bag_db.db.BagDbRepository
+import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
 import com.trempel.core_ui.RecyclerItemComparator
 import kotlinx.coroutines.launch
 
 internal class CategoryProductItemViewModel(
     val product: CategoryProduct,
-    private val bagDbRepository: BagDbRepository
+    private val bagDbRepository: BagDbRepository,
+    private val favoritesDbRepository: FavoritesDbRepository
 ) : ViewModel(), RecyclerItemComparator {
+
+    val isFavorite = favoritesDbRepository.isFavorite(product.id)
+
+    fun transferringItemFavorites(isChecked: Boolean) {
+        if (isChecked == isFavorite.value) return
+        if (isChecked) {
+            viewModelScope.launch { favoritesDbRepository.addProductToFavorites(product.id) }
+        } else {
+            viewModelScope.launch { favoritesDbRepository.deleteProductFromDbFavoritesById(product.id) }
+        }
+    }
 
     fun onItemClicked(view: View, id: Int) {
         val action = CategoryProductsFragmentDirections.actionCategoryProductsToPdpFragment(id)
