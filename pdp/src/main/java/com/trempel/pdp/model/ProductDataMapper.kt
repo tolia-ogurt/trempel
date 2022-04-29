@@ -1,6 +1,7 @@
 package com.trempel.pdp.model
 
-import com.trempel.core_network.*
+import com.trempel.core_network.ProductModel
+import com.trempel.core_network.Rating
 
 internal fun ProductModel.toDomainModel(): ProductDomainModel {
     return ProductDomainModel(

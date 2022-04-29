@@ -39,10 +39,13 @@ class CategoryFragment : BaseFragment() {
     }
 
     private fun observeExceptionResponse() {
-        viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
-            ExceptionDialog(it)
-                .apply { retryCall = viewModel::loadProduct }
-                .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
-        })
+        viewModel.errorLiveData.observe(
+            this.viewLifecycleOwner,
+            {
+                ExceptionDialog(it)
+                    .apply { retryCall = viewModel::loadProduct }
+                    .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
+            }
+        )
     }
 }

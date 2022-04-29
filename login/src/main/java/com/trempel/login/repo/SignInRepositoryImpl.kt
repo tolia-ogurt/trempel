@@ -1,16 +1,14 @@
 package com.trempel.login.repo
 
 import com.trempel.login.model.LoginRequest
-import com.trempel.login.model.LoginResponse
 import com.trempel.login.service.SignInService
 import io.reactivex.Completable
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 internal class SignInRepositoryImpl @Inject constructor(
-    private val sessionManager: SessionManager, private val retrofitService: SignInService
+    private val sessionManager: SessionManager,
+    private val retrofitService: SignInService
 ) : SignInRepository {
 
     override fun signInApp(email: String, password: String): Completable {

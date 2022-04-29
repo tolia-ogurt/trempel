@@ -4,7 +4,6 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
-import com.trempel.categories.ui.products_in_category.CategoryProductsFragmentDirections
 import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
 import com.trempel.core_ui.RecyclerItemComparator

@@ -5,10 +5,9 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.categories.R
-import com.trempel.categories.repo.CategoryRepository
 import com.trempel.categories.model.CategoryDomainModel
+import com.trempel.categories.repo.CategoryRepository
 import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
 import com.trempel.core_ui.RecyclerItem
@@ -16,7 +15,6 @@ import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.core_ui.exceptions.TrempelException
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CategoryProductsViewModel @Inject constructor(
@@ -41,18 +39,21 @@ class CategoryProductsViewModel @Inject constructor(
             .doFinally {
                 isInProgressTemp.set(false)
             }
-            .subscribe({ response ->
-                _items.value = response.map {
-                    CategoryProductItemViewModel(
-                        it,
-                        bagDbRepository,
-                        favoritesDbRepository
-                    )
+            .subscribe(
+                { response ->
+                    _items.value = response.map {
+                        CategoryProductItemViewModel(
+                            it,
+                            bagDbRepository,
+                            favoritesDbRepository
+                        )
+                    }
+                        .map { it.toRecyclerItem() }
+                },
+                { error ->
+                    _errorLiveData.value = error as? TrempelException
                 }
-                    .map { it.toRecyclerItem() }
-            }, { error ->
-                _errorLiveData.value = error as? TrempelException
-            })
+            )
     }
 
     private fun CategoryProductItemViewModel.toRecyclerItem() = RecyclerItem(

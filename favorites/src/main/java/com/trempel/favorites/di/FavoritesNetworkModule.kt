@@ -2,7 +2,6 @@ package com.trempel.favorites.di
 
 import android.content.Context
 import androidx.room.Room
-import com.trempel.core_network.bag_db.db.AppDataBase
 import com.trempel.core_network.favorites_db.db.FavoritesDataBase
 import com.trempel.favorites.service.FavoritesService
 import dagger.Module

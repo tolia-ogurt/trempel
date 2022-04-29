@@ -2,7 +2,11 @@ package com.trempel.home_page.ui
 
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.library.baseAdapters.BR
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.home_page.R
 import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
@@ -11,7 +15,6 @@ import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.home_page.repository.SearchRepository
 import kotlinx.coroutines.launch
-import java.io.IOException
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(

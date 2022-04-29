@@ -2,7 +2,9 @@ package com.trempel.categories.ui.products_in_category
 
 import android.content.Context
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.categories.databinding.CategoryProductsFragmentBinding
 import com.trempel.core_ui.BaseFragment
@@ -38,10 +40,10 @@ class CategoryProductsFragment : BaseFragment() {
     }
 
     private fun observeExceptionResponse() {
-        viewModel.errorLiveData.observe(this.viewLifecycleOwner, {
+        viewModel.errorLiveData.observe(this.viewLifecycleOwner) {
             ExceptionDialog(it)
                 .apply { retryCall = { viewModel.loadProduct(args.category) } }
                 .show(childFragmentManager, ExceptionDialog.SERVICE_EXCEPTION_DIALOG)
-        })
+        }
     }
 }

@@ -50,4 +50,3 @@ class SwipeItemForDelete : View.OnTouchListener {
         }
     }
 }
-

@@ -1,12 +1,19 @@
 package com.trempel.bag.ui
 
 import androidx.databinding.library.baseAdapters.BR
-import androidx.lifecycle.*
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.trempel.bag.R
 import com.trempel.bag.model.toBagDomainModel
 import com.trempel.bag.model.toBagEntity
-import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.bag.repository.BagNetworkRepository
+import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.core_ui.RecyclerItem
 import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.core_ui.exceptions.TrempelException
@@ -74,7 +81,6 @@ class BagViewModel @Inject constructor(
     private fun getQuantitySum(): Int? {
         return _bagItems.value?.map { it.data as BagItemViewModel }
             ?.sumOf { it.quantity.value ?: 0 }
-
     }
 
     private fun getFinalPrice(): Float? {
@@ -99,8 +105,10 @@ class BagViewModel @Inject constructor(
         super.onPause(owner)
         viewModelScope.launch {
             _bagItems.value?.let { bagItems ->
-                bagDbRepository.updateQuantity(*bagItems.map { it.data as BagItemViewModel }
-                    .map { it.item.toBagEntity(it.quantity.value ?: 0) }.toTypedArray())
+                bagDbRepository.updateQuantity(
+                    *bagItems.map { it.data as BagItemViewModel }
+                        .map { it.item.toBagEntity(it.quantity.value ?: 0) }.toTypedArray()
+                )
             }
         }
     }

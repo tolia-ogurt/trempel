@@ -2,8 +2,8 @@ package com.trempel.bag.di
 
 import android.content.Context
 import androidx.room.Room
-import com.trempel.core_network.bag_db.db.AppDataBase
 import com.trempel.bag.service.BagService
+import com.trempel.core_network.bag_db.db.AppDataBase
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

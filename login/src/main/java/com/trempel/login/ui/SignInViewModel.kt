@@ -28,11 +28,14 @@ class SignInViewModel @Inject constructor(
         val password = passwordEditTextData.value.toString()
         disposable = signInRepository.signInApp(email, password)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                _successLiveData.value = Unit
-            }, { error ->
-                _errorLiveData.value = error as? TrempelException
-            })
+            .subscribe(
+                {
+                    _successLiveData.value = Unit
+                },
+                { error ->
+                    _errorLiveData.value = error as? TrempelException
+                }
+            )
     }
 
     fun setLoginDataForDebug() {

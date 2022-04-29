@@ -2,14 +2,18 @@ package com.trempel.pdp.ui
 
 import android.util.Log
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.*
-import com.trempel.core_ui.RecyclerItem
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.pdp.BR
 import com.example.pdp.R
-import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.core_network.bag_db.db.BagDbRepository
 import com.trempel.core_network.favorites_db.db.FavoritesDbRepository
+import com.trempel.core_ui.RecyclerItem
 import com.trempel.core_ui.SingleLiveEvent
+import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.pdp.model.ProductDomainModel
 import com.trempel.pdp.repo.ProductRepository
 import com.trempel.pdp.repo.RecentlyViewedRepository
@@ -51,12 +55,15 @@ class PdpViewModel @Inject constructor(
             .doOnError {
                 Log.d("TAG", "loadProduct: $it")
             }
-            .subscribe({ response ->
-                _product.value = response
-                addRecentlyViewedProduct(response)
-            }, { error ->
-                _errorLiveData.value = error as? TrempelException
-            })
+            .subscribe(
+                { response ->
+                    _product.value = response
+                    addRecentlyViewedProduct(response)
+                },
+                { error ->
+                    _errorLiveData.value = error as? TrempelException
+                }
+            )
     }
 
     fun transferringItemFavorites(isChecked: Boolean) {
@@ -75,12 +82,15 @@ class PdpViewModel @Inject constructor(
     fun getRecentlyViewedProduct(idProduct: Int) {
         disposable += roomRepository.getLatestRecentlyViewed(idProduct)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ response ->
-                _recentlyViewed.value = response.map { RecentlyViewedItemViewModel(it) }
-                    .map { it.toRecyclerItem() }
-            }, {
-                Log.e("Room live data", "Error")
-            })
+            .subscribe(
+                { response ->
+                    _recentlyViewed.value = response.map { RecentlyViewedItemViewModel(it) }
+                        .map { it.toRecyclerItem() }
+                },
+                {
+                    Log.e("Room live data", "Error")
+                }
+            )
     }
 
     private fun addRecentlyViewedProduct(productDomainModel: ProductDomainModel) {
@@ -89,7 +99,8 @@ class PdpViewModel @Inject constructor(
             .subscribe(
                 {
                     Log.e("$javaClass.name", "addRecentlyViewedProduct DONE")
-                }, {
+                },
+                {
                     Log.e("$javaClass.name", "addRecentlyViewedProduct ERROR")
                 }
             )

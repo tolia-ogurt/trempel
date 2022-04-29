@@ -2,8 +2,8 @@ package com.trempel.pdp.repo
 
 import com.trempel.pdp.db.RecentlyViewed
 import com.trempel.pdp.db.RecentlyViewedDao
-import com.trempel.pdp.model.toRecentlyViewed
 import com.trempel.pdp.model.ProductDomainModel
+import com.trempel.pdp.model.toRecentlyViewed
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers

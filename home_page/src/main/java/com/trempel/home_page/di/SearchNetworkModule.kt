@@ -1,7 +1,6 @@
 package com.trempel.home_page.di
 
 import com.trempel.home_page.service.SearchService
-import com.trempel.login.service.SignInService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
