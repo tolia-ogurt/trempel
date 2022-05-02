@@ -1,0 +1,24 @@
+package com.trempel.profile.di
+
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.trempel.profile.ui.ProfileFragment
+import dagger.*
+import dagger.android.AndroidInjector
+import dagger.multibindings.ClassKey
+import dagger.multibindings.IntoMap
+
+@Subcomponent(modules = [ImageSaverModule::class,ProfileDataModule::class])
+interface ProfileComponent : AndroidInjector<ProfileFragment> {
+
+    @Subcomponent.Factory
+    interface Factory : AndroidInjector.Factory<ProfileFragment>
+}
+
+@Module(subcomponents = [ProfileComponent::class])
+abstract class ProfileFragmentModule {
+
+    @Binds
+    @IntoMap
+    @ClassKey(ProfileFragment::class)
+    abstract fun bindProfileFragmentInjectorFragment(factory: ProfileComponent.Factory): AndroidInjector.Factory<*>
+}

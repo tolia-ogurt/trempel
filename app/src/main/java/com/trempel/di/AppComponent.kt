@@ -12,6 +12,7 @@ import com.trempel.home_page.di.HomePageFragmentModule
 import com.trempel.home_page.di.SearchFragmentModule
 import com.trempel.login.di.LoginFragmentModule
 import com.trempel.pdp.di.PdpFragmentModule
+import com.trempel.profile.di.ProfileFragmentModule
 import com.trempel.ui.main_activity.MainActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -30,6 +31,8 @@ import javax.inject.Singleton
         BagFragmentModule::class,
         BagDataModule::class,
         SearchFragmentModule::class,
+        HomePageFragmentModule::class,
+        ProfileFragmentModule::class,
         HomePageFragmentModule::class,
         FavoritesFragmentModule::class,
         FavoritesDataModule::class
