@@ -38,7 +38,7 @@ internal class MainActivity : BaseActivity() {
         }
     }
 
-    private fun configureLayout(){
+    private fun configureLayout() {
         setUpBottomNav()
         setNavigationIcon()
         setBackPressedListener()
