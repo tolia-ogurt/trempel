@@ -2,7 +2,6 @@ package com.trempel.profile.ui
 
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.*
 import com.trempel.core_ui.ImageSaver
 import com.trempel.core_ui.SingleLiveEvent

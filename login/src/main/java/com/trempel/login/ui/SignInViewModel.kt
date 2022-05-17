@@ -1,9 +1,9 @@
 package com.trempel.login.ui
 
-import androidx.databinding.ktx.BuildConfig
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.login.BuildConfig
 import com.trempel.core_ui.SingleLiveEvent
 import com.trempel.core_ui.exceptions.TrempelException
 import com.trempel.login.repo.SignInRepository

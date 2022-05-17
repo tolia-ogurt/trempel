@@ -3,9 +3,7 @@ package com.trempel.profile.ui
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,7 +35,10 @@ fun UserProfile(profileViewModel: ProfileViewModel = viewModel()) {
         ProgressBar()
     } else {
         ErrorDialog(profileViewModel)
-        Column(Modifier.padding(top = 24.dp)) {
+        Column(Modifier
+                .padding(top = 24.dp)
+                .verticalScroll(rememberScrollState())
+        ) {
             UserImage(profileViewModel)
             Column(
                 Modifier
@@ -46,7 +47,7 @@ fun UserProfile(profileViewModel: ProfileViewModel = viewModel()) {
             ) {
                 Column(
                     Modifier
-                        .padding(start = 40.dp, top = 18.dp)
+                        .padding(start = 40.dp, top = 18.dp, end = 40.dp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.Start
                 ) {
@@ -83,6 +84,7 @@ fun UserProfile(profileViewModel: ProfileViewModel = viewModel()) {
                     }
                 }
             }
+            UserLocation(profileViewModel)
         }
     }
 }
@@ -90,7 +92,7 @@ fun UserProfile(profileViewModel: ProfileViewModel = viewModel()) {
 @Composable
 fun UserInfo(title: String, description: String) {
     Text(
-        modifier = Modifier.padding(top = 24.dp),
+        modifier = Modifier.padding(top = 12.dp),
         text = title,
         fontStyle = FontStyle(R.font.montserrat_light),
         fontSize = 16.sp
@@ -115,7 +117,7 @@ fun UserImage(profileViewModel: ProfileViewModel = viewModel()) {
     ) {
         PermissionState(permissionState, selectedImage, userImageIsSelected)
         Image(
-            painter = rememberImagePainter(data = profileViewModel.loadUserImage()),
+            painter = rememberImagePainter(data = profileViewModel.loadUserImage() ?: R.drawable.default_image_profile),
             contentDescription = "Profile image",
             Modifier
                 .size(200.dp)

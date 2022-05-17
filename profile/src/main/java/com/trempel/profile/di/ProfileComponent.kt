@@ -1,6 +1,5 @@
 package com.trempel.profile.di
 
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.trempel.profile.ui.ProfileFragment
 import dagger.*
 import dagger.android.AndroidInjector
