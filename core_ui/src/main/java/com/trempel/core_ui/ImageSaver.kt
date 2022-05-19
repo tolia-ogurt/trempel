@@ -1,8 +1,8 @@
 package com.trempel.core_ui
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -14,7 +14,6 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import java.lang.Exception
-
 
 class ImageSaver(context: Context) {
     private var directoryName = "images"
@@ -71,7 +70,8 @@ class ImageSaver(context: Context) {
         return File(
             Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES
-            ), albumName
+            ),
+            albumName
         )
     }
 
