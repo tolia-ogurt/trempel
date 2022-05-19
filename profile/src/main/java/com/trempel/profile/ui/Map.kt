@@ -11,10 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.android.gms.maps.GoogleMapOptions
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.rememberCameraPositionState
 
@@ -35,8 +35,8 @@ fun UserLocation(profileViewModel: ProfileViewModel = viewModel()) {
             .fillMaxWidth()
             .padding(start = 40.dp, end = 40.dp, top = 18.dp, bottom = 18.dp)
             .clip(shape = RoundedCornerShape(10.dp)),
-        cameraPositionState = cameraPositionState,
-        googleMapOptionsFactory = { GoogleMapOptions().mapId("75eba249e60b008f") }
+        properties = MapProperties(mapStyleOptions = TrempelMapStyle),
+        cameraPositionState = cameraPositionState
     ) {
         location?.let { Marker(position = it) }
     }
