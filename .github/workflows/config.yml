@@ -22,6 +22,8 @@ jobs:
         run: ./gradlew ktlintCheck
      
       - name: Assembling
+        env:
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
         run: ./gradlew assembleDebug
 
       - name: Unit testing
