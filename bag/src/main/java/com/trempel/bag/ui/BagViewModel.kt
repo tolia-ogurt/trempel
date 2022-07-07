@@ -1,5 +1,6 @@
 package com.trempel.bag.ui
 
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -30,6 +31,7 @@ class BagViewModel @Inject constructor(
     private val _errorLiveData = SingleLiveEvent<TrempelException?>()
     val errorLiveData: LiveData<TrempelException?> get() = _errorLiveData
     val quantity = MediatorLiveData<Int>()
+    val isInProgressTemp = ObservableBoolean(true)
 
     private val _total = MutableLiveData<Float>()
     val total: LiveData<Float> get() = _total
@@ -75,6 +77,7 @@ class BagViewModel @Inject constructor(
             }.onSuccess {
                 _bagItems.value = it
             }
+            isInProgressTemp.set(false)
         }
     }
 

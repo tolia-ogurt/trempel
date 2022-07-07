@@ -33,7 +33,7 @@ dependencies {
     def retrofit_version = "2.9.0"
     def okhttp_version = "4.9.3"
     def gson_version = "2.5.0"
-    def dagger_version = "2.35.1"
+    def dagger_version = "2.38.1"
     def rxJava2_version ="2.2.12"
     def rxAndroid_version = "2.1.1"
     def rxJavaAdapter_version = "2.9.0"
@@ -46,6 +46,7 @@ dependencies {
     implementation project(path: ":core_data")
     implementation project(path: ":categories")
     implementation project(path: ":bag")
+    implementation project(path: ":profile")
     implementation project(path: ":favorites")
 
     //Room

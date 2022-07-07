@@ -31,5 +31,16 @@
             tools:itemCount="2"
             tools:listitem="@layout/favorite_item" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{viewModel.isInProgressTemp}" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

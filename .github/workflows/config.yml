@@ -18,6 +18,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: LocalProperties
+        env:
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
+        run: |
+          touch local.properties
+          echo MAPS_API_KEY="$MAPS_API_KEY" >> local.properties
+          cat local.properties
+        shell: bash
+
       - name: Linting
         run: ./gradlew ktlintCheck
      

@@ -7,7 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.trempel.R
 import com.trempel.databinding.ActivitySplashScreenBinding
 import com.trempel.ui.main_activity.MainActivity
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashScreenActivity : AppCompatActivity() {
 

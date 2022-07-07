@@ -1,5 +1,6 @@
 package com.trempel.favorites.ui
 
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -24,6 +25,7 @@ class FavoritesViewModel @Inject constructor(
 
     private val _favoritesItems = MutableLiveData<List<RecyclerItem>>()
     val favoritesItems: LiveData<List<RecyclerItem>> get() = _favoritesItems
+    val isInProgressTemp = ObservableBoolean(true)
 
     private val deleteObserver = Observer<Int> { productId ->
         viewModelScope.launch {
@@ -43,6 +45,7 @@ class FavoritesViewModel @Inject constructor(
                     it.deleteLiveData.observeForever(deleteObserver)
                 }
                 .map { it.toRecyclerItem() }
+            isInProgressTemp.set(false)
         }
     }
 

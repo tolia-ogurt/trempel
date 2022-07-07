@@ -27,4 +27,10 @@
     <string name="text_no_result">No matching results</string>
     <string name="checkout">Checkout</string>
     <string name="total_product_format">Total: %3d items</string>
+    <string name="address_format">%s %d, %s %s</string>
+    <string name="user_name_format">%s %s</string>
+    <string name="user_name_title_profile">Name</string>
+    <string name="user_nickname_title_profile">User Name</string>
+    <string name="user_phone_number_title_profile">Phone Number</string>
+    <string name="user_address_title_profile">Address</string>
 </resources>

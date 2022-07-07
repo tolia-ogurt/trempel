@@ -65,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:hint="@string/text_hint_login"
                 android:text="@={viewModel.loginEditTextData}"
-                style="@style/TextInputEditText" />
+                android:theme="@style/TextInputEditText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +88,7 @@
                 android:hint="@string/text_hint_password"
                 android:inputType="textPassword"
                 android:text="@={viewModel.passwordEditTextData}"
-                style="@style/TextInputEditText" />
+                android:theme="@style/TextInputEditText" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
